@@ -1,0 +1,176 @@
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+  $(document).ready(function() {
+  	$('#example').dataTable();
+  	$( "#datetime" ).datepicker({
+  		changeMonth: true,
+  		changeYear: true,
+  		dateFormat: 'yy-mm-dd'
+  	});
+  });
+  </script>
+  <%if !@admin.nil? %>
+  <%= link_to "Log out", destroy_path, method: "delete" %>
+  <%end%>
+
+  <h1 >Order Tracker</h1>
+  <script>
+  $(function(){
+  	$(".pick_up_date").popover();
+  	$(".drop_point_date").popover();
+  	$(".shipper_address").popover();
+  	$(".drop_point_address").popover();
+  	$(".truck_info").popover();
+  	$(".invoice_date").popover();
+$("#shipper").autocomplete({source: $("#shipper").data("autocomplete-source")});
+$("#transporter").autocomplete({source:$("#transporter").data("autocomplete-source") });
+  
+
+  });
+  </script>
+
+  <style type="text/css">
+  div#box1{
+  	position: absolute;
+  	top: 10px;
+  	left: 10px;
+  	width: 260px;
+  	height: 260px;
+  	background: #E2E2E2;
+  	padding: 20px ;
+  	display: none;
+  }
+  .searchBy{
+    float:left;
+  }
+  </style>
+
+
+    <div class="col-md-10 col-md-offset-1" style="
+  width: 1600px;
+  margin-left: 0px;
+  ">
+<table id="example" class="display" cellspacing="0" width="100%">
+ <thead>
+  <tr>
+   <th>Inquiry Date</th>
+   <th>No</th>
+   <th>Shipper</th>
+   <th>Route</th>
+   <th>Truck Size</th>
+   <th>Rate</th>
+   <th>Transporter</th>
+   <th>Delivery Status</th>
+   <th>Details</th>
+   <%if current_user.email == "mu@ikargo.com" %>
+   <th>Payment Status</th>
+   <th>Billing Status</th>
+   <th>Billing amount</th>
+   <%end%>
+ </tr>
+</thead>
+<tfoot>
+  <tr>
+   <th>Inquiry Date</th>
+   <th>No</th>
+   <th>Shipper</th>
+   <th>Route</th>
+   <th>Truck Size</th>
+   <th>Rate</th>
+   <th>Transporter</th>
+   <th>Delivery Status</th>
+   <th>Details</th>
+   <%if current_user.email == "mu@ikargo.com" %>
+   <th>Payment Status</th>
+   <th>Billing Status</th>
+   <th>Billing amount</th>
+   <%end%>
+ </tr>
+</tfoot>
+<tbody>
+  <% @pick_up_date.each do |x| %>
+  <% if !@pick_up_date.nil? %>
+  <tr>
+   <td>
+    <button type="button"  class= "pick_up_date"data-container="body" data-toggle="popover" data-placement="right" data-content="pickup date <%= x.datetime %>" >
+     <%= x.inquiry_date %>
+   </button>
+ </td>
+ <td>
+  <button type="button"  class= "drop_point_date" data-container="body" data-toggle="popover" data-placement="top" data-content="drop point date <%= x.drop_point_date %>" >
+   <%= x.no %>
+ </td>
+ <td>
+  <%= x.shipper %>
+</td>
+<td>
+  <% if !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? && !x.pick_up_address_3.empty?&& !x.pick_up_address_4.empty?%>
+  <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>2.<%= x.pick_up_address_2%><br>3.<%= x.pick_up_address_3%><br>4.<%= x.pick_up_address_4%>">
+    <%elsif !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? && !x.pick_up_address_3.empty? %>
+    <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>2.<%= x.pick_up_address_2%><br>3.<%= x.pick_up_address_3%>">
+      <%elsif !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? %>
+      <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>2.<%= x.pick_up_address_2%>">
+        <%elsif !x.pick_up_address_1.empty? %>
+        <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %>">
+          <%end%>
+          <%= x.remarks %>
+        </button>
+      </td>
+      <td>
+       <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="reg no: <%= x.truck_reg_no %> <br> name: <%= x.name %><br>  IC: <%= x.ic %><br>  phone: <%= x.phone_no %>">
+        <%= x.truck_size %>
+      </button>
+    </td>
+    <td><%= x.payment_rate %></td>
+    <td>
+     <button type="button" class="drop_point_address" data-container="body" data-toggle="popover" data-placement="top"data-html="true" data-content="drop point address:<br>  <%= x.drop_point_address_1 %>">
+      <%= x.transporter %>
+    </button>
+  </td>
+
+
+  <td><% if x.delivered == "OTW" %>
+    <p style="color:#CC6600;">OTW</p>
+    <%elsif x.delivered == "Lorry Broken"%>
+    <p style="color:red;">LORRY BROKEN</p>
+    <%elsif x.delivered == "Driver Absent"%>
+    <p style="color:red;">DRIVER ABSENT</p>
+    <%elsif x.delivered == "Accident"%>
+    <p style="color:red;">ACCIDENT</p>
+    <%elsif x.delivered == "Overweight"%>
+    <p style="color:red;">OVERWEIGHT</p>
+    <%elsif x.delivered == "DONE!"%>
+    <p style="color:green;">DONE!</p>
+    <%end%>
+  </td>
+
+  <td><a href="<%= order_path(x.id) %>"><i class="fa fa-plus tiny"></a></i></td>
+  <%end%>
+  <% if current_user.email == "mu@ikargo.com" %>
+  <td><% if x.payment_balance == 0.0 %>
+    <p style="color:green;">DONE!</p>
+    <%else%>
+    <p><%= x.payment_balance %></p>
+    <%end%>
+  </td>
+  <td><% if x.billing_balance == 0.0 %>
+    <p style="color:green;">DONE!</p>
+    <%else%>
+    <p><%= x.billing_balance %></p>
+    <%end%>
+    <td>
+      <button type="button" class= "invoice_date" data-container="body" data-toggle="popover" data-placement="left" data-content="invoice_date: <%= x.invoice_date %>">
+        <%= x.billing_amount %>
+      </button>
+    </td>
+    <%end%>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+<br>
+ <%= link_to "Back" , dashboard_path, class: "btn btn-primary"  %>
+</div>
+
+</div>
