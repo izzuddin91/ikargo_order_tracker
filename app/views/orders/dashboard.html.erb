@@ -34,14 +34,14 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
 
   <style type="text/css">
   div#box1{
-  	position: absolute;
-  	top: 10px;
-  	left: 10px;
-  	width: 260px;
-  	height: 260px;
-  	background: #E2E2E2;
-  	padding: 20px ;
-  	display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 260px;
+    height: 260px;
+    background: #E2E2E2;
+    padding: 20px ;
+    display: none;
   }
   .searchBy{
     float:left;
@@ -106,114 +106,6 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
 </div>
 
 
-<<<<<<< HEAD
-  <table id="example" class="display" cellspacing="0" width="100%">
-  	<thead>
-  		<tr>
-  			<th>Inquiry Date</th>
-  			<th>No</th>
-  			<th>Shipper</th>
-  			<th>Route</th>
-  			<th>Truck Size</th>
-  			<th>Rate</th>
-  			<th>Transporter</th>
-        
-
-  			<th>Billing amount</th>
-
-  			<th>Details</th>
-        <th>Payment Status</th>
-        <th>Billing Status</th>
-        <th>Delivery Status</th>
-  		</tr>
-  	</thead>
-  	<tfoot>
-  		<tr>
-  			<th>Inquiry Date</th>
-  			<th>No</th>
-  			<th>Shipper</th>
-  			<th>Route</th>
-  			<th>Truck Size</th>
-  			<th>Rate</th>
-  			<th>Transporter</th>
-
-  			<th>Billing amount</th>
-
-  			<th>Details</th>
-        <th>Payment Status</th>
-        <th>Billing Status</th>
-        <th>Delivery Status</th>
-  		</tr>
-  	</tfoot>
-
-  	<tbody>
-  		<% @order.each do |x| %>
-  		<% if !@order.nil? %>
-  		<tr>
-  			<td>
-
-  				<button type="button"  class= "pick_up_date"data-container="body" data-toggle="popover" data-placement="right" data-content="pickup date <%= x.datetime %>" >
-  					<%= x.inquiry_date %>
-  				</button>
-  			</td>
-  			<td>
-  				<button type="button"  class= "drop_point_date" data-container="body" data-toggle="popover" data-placement="top" data-content="drop point date <%= x.drop_point_date %>" >
-  					<%= x.no %>
-  				</td>
-  				<td>
-
-  					<button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br><%= x.pick_up_address %>">
-  						<%= x.shipper %>
-  					</button>
-  				</td>
-  				<td><%= x.remarks %></td>
-  				<td>
-  					<button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="reg no: <%= x.truck_reg_no %> <br> name: <%= x.name %><br>  IC: <%= x.ic %><br>  phone: <%= x.phone_no %>">
-  						<%= x.truck_size %>
-  					</button>
-  				</td>
-  				<td><%= x.payment_rate %></td>
-  				<td>
-  					<button type="button" class="drop_point_address" data-container="body" data-toggle="popover" data-placement="top"data-html="true" data-content="drop point address:<br>  <%= x.drop_point_address %>">
-  						<%= x.transporter %>
-  					</button>
-  				</td>
- 
-  				<td>
-  					<button type="button" class="drop_point_address" class= "invoice_date" data-container="body" data-toggle="popover" data-placement="top" data-content="invoice_date: <%= x.invoice_date %>">
-  						<%= x.billing_amount %>
-  					</button>
-  				</td>
-  			
-  				<td><a href="<%= order_path(x.id) %>"><i class="fa fa-plus tiny"></a></i></td>
-  				<%end%>
-
-          <td><% if x.payment_balance == 0.0 %>
-          <p style="color:green;">DONE!</p>
-          <%else%>
-          <p><%= x.payment_balance %></p>
-          <%end%>
-          </td>
-
-          <td><% if x.billing_balance == 0.0 %>
-          <p style="color:green;">DONE!</p>
-          <%else%>
-          <p><%= x.billing_balance %></p>
-          <%end%>
-
-          <td><% if x.delivered == "OTW" %>
-          <p style="color:#CC6600;">OTW</p>
-          <%elsif x.delivered == "Lorry Broken"%>
-          <p style="color:red;">LORRY BROKEN</p>
-                    <%elsif x.delivered == "Driver Absent"%>
-          <p style="color:red;">DRIVER ABSENT</p>
-                    <%elsif x.delivered == "Accident"%>
-          <p style="color:red;">ACCIDENT</p>
-                    <%elsif x.delivered == "Overweight"%>
-          <p style="color:red;">OVERWEIGHT</p>
-                    <%elsif x.delivered == "DONE!"%>
-          <p style="color:green;">DONE!</p>
-=======
 <table id="example" class="display" cellspacing="0" width="100%">
  <thead>
   <tr>
@@ -285,7 +177,6 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
       <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%><br>2.<%= x.pick_up_address_2%><br>PIC no:<%=x.pick_up_pic_no_2%>">
         <%elsif !x.pick_up_address_1.empty? %>
         <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%>">
->>>>>>> updated aug14 2015
           <%end%>
           <%= x.remarks %>
         </button>
@@ -356,3 +247,4 @@ margin-left: 500px;
   RM<%= Order.sum(:billing_amount)%></p>
   <%end%>
 </div>
+
