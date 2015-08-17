@@ -2,10 +2,26 @@ class OrdersController < ApplicationController
 	before_filter :authenticate_user!
 	def index
 		@order = Order.new
+		@address = []
+		@address << Order.pluck(:pick_up_address_1)*","
+		@address << Order.pluck(:pick_up_address_2)*","
+		@address << Order.pluck(:pick_up_address_3)*","
+		@address << Order.pluck(:pick_up_address_4)*","
+		@address << Order.pluck(:drop_point_address_1)*","
+		@address << Order.pluck(:drop_point_address_2)*","
+		@address << Order.pluck(:drop_point_address_3)*","
+		@address << Order.pluck(:drop_point_address_4)*","
+		@shipper_address = []
+		@shipper_address << Order.pluck(:shipper_address)*","
+		
 	end
 
 	def dashboard
 		@order = Order.all
+		respond_to do |format|
+			format.html
+			format.xls { render xls: generate_xls(@order)}
+		end
 	end
 
 	def create
@@ -77,6 +93,15 @@ redirect_to root_path(@order)
 end
 
 def edit
+	@address = []
+	@address << Order.pluck(:pick_up_address_1)*","
+	@address << Order.pluck(:pick_up_address_2)*","
+	@address << Order.pluck(:pick_up_address_3)*","
+	@address << Order.pluck(:pick_up_address_4)*","
+	@address << Order.pluck(:drop_point_address_1)*","
+	@address << Order.pluck(:drop_point_address_2)*","
+	@address << Order.pluck(:drop_point_address_3)*","
+	@address << Order.pluck(:drop_point_address_4)*","
 	@order = Order.find(params[:id])
 end
 
@@ -85,7 +110,7 @@ def show
 end
 
 def update
-	
+
 	@order = Order.find(params[:id])
 
 	@order.update(
@@ -158,7 +183,6 @@ def update
 
 
   def destroy
-  	
   	@order = Order.find(params[:id])
   	@order.destroy
     # flash[:success] = "User deleted"

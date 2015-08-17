@@ -22,8 +22,6 @@ def pick_up_date
 	@pick_up_date = Order.search_by_name :datetime, params[:datetime]
 end
 
-
-
 def search_number
 	@number = Order.where(['
 		pick_up_pic_no_1 LIKE ? 
@@ -51,25 +49,20 @@ def search_number
 		payment_name LIKE ?
 		OR
 		billing_name LIKE?',
-		 "%#{params[:numbers]}%",
-		  "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%", 
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%",
-		   "%#{params[:numbers]}%"
-
-
-
-
-		   ])
-
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%", 
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%",
+		"%#{params[:numbers]}%"
+		])
 end
 
 end

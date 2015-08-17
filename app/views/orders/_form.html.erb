@@ -1,3 +1,44 @@
+
+<script>  
+$(function(){
+$("#order_pick_up_address_1").autocomplete({source: $("#order_pick_up_address_1").data("autocomplete-source") });  
+
+$("#order_pick_up_pic_no_1").autocomplete({source: $("#order_pick_up_pic_no_1").data("autocomplete-source") });
+
+$("#order_pick_up_address_2").autocomplete({source: $("#order_pick_up_address_2").data("autocomplete-source") });
+
+$("#order_pick_up_pic_no_2").autocomplete({source: $("#order_pick_up_pic_no_2").data("autocomplete-source") });
+
+$("#order_pick_up_address_3").autocomplete({source: $("#order_pick_up_address_3").data("autocomplete-source") });
+
+$("#order_pick_up_pic_no_3").autocomplete({source: $("#order_pick_up_pic_no_3").data("autocomplete-source") });
+
+$("#order_pick_up_address_4").autocomplete({source: $("#order_pick_up_address_4").data("autocomplete-source") });
+
+$("#order_pick_up_pic_no_4").autocomplete({source: $("#order_pick_up_pic_no_4").data("autocomplete-source") });
+
+
+$("#order_drop_point_address_1").autocomplete({source: $("#order_drop_point_address_1").data("autocomplete-source") });  
+
+$("#order_drop_point_pic_no_1").autocomplete({source: $("#order_drop_point_pic_no_1").data("autocomplete-source") });
+
+$("#order_drop_point_address_2").autocomplete({source: $("#order_drop_point_address_2").data("autocomplete-source") });
+
+$("#order_drop_point_pic_no_2").autocomplete({source: $("#order_drop_point_pic_no_2").data("autocomplete-source") });
+
+$("#order_drop_point_address_3").autocomplete({source: $("#order_drop_point_address_3").data("autocomplete-source") });
+
+$("#order_drop_point_pic_no_3").autocomplete({source: $("#order_drop_point_pic_no_3").data("autocomplete-source") });
+
+$("#order_drop_point_address_4").autocomplete({source: $("#order_drop_point_address_4").data("autocomplete-source") });
+
+$("#order_drop_point_pic_no_4").autocomplete({source: $("#order_drop_point_pic_no_4").data("autocomplete-source") });
+
+
+$("#order_shipper_address").autocomplete({source: $("#order_shipper_address").data("autocomplete-source") });  
+});
+
+</script>
 <%= form_for @order  do |f| %>
   <div class="col-md-4 col-md-offset-1">
     <div>
@@ -15,7 +56,7 @@
             <dd><%= f.text_field :shipper, class: "form-control" %></dd>
             <br>
             <dt><%= f.label :shipper_address  %></dt>
-            <dd><%= f.text_area :shipper_address, class: "form-control" %></dd>
+            <dd><%= f.text_area :shipper_address, class: "form-control", data: { autocomplete_source: @shipper_address} %></dd>
             <br>
             <dt><%= f.label :transporter %></dt>
             <dd><%= f.text_field :transporter, class: 'form-control' %></dd>
@@ -34,7 +75,7 @@
         <br><br>
         <dl class="dl-horizontal">
           <dt><%= f.label :pick_up_address_1 %></dt>
-          <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;" %></dd>
+          <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;", data: { autocomplete_source: @address} %></dd>
           <br>
           <dt><%= f.label :pick_up_pic_no_1 %></dt>
           <dd><%= f.text_field :pick_up_pic_no_1, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -42,7 +83,7 @@
 
 
           <dt><%= f.label :pick_up_address_2 %></dt>
-          <dd><%= f.text_area :pick_up_address_2, class: 'form-control' %></dd>
+          <dd><%= f.text_area :pick_up_address_2, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
           <br>
           <dt><%= f.label :pick_up_pic_no_2 %></dt>
           <dd><%= f.text_field :pick_up_pic_no_2, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -50,7 +91,7 @@
 
 
          <dt><%= f.label :pick_up_address_3 %></dt>
-          <dd><%= f.text_area :pick_up_address_3, class: 'form-control' %></dd>
+          <dd><%= f.text_area :pick_up_address_3, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
           <br>
           <dt><%= f.label :pick_up_pic_no_3 %></dt>
           <dd><%= f.text_field :pick_up_pic_no_3, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -58,7 +99,7 @@
 
 
          <dt><%= f.label :pick_up_address_4 %></dt>
-          <dd><%= f.text_area :pick_up_address_4, class: 'form-control' %></dd>
+          <dd><%= f.text_area :pick_up_address_4, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
           <br>
           <dt><%= f.label :pick_up_pic_no_4 %></dt>
           <dd><%= f.text_field :pick_up_pic_no_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -87,14 +128,14 @@
 
 
         <dt><%= f.label :drop_point_address_1 %></dt>
-        <dd><%= f.text_area :drop_point_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;" %></dd>
+        <dd><%= f.text_area :drop_point_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;", data: { autocomplete_source: @address}  %></dd>
         <br>
          <dt><%= f.label :drop_point_pic_no_1 %></dt>
         <dd><%= f.text_field :drop_point_pic_no_1, class: "form-control", style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
         <br>
 
         <dt><%= f.label :drop_point_address_2 %></dt>
-        <dd><%= f.text_area :drop_point_address_2, class: 'form-control' %></dd>
+        <dd><%= f.text_area :drop_point_address_2, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
         <br>
          <dt><%= f.label :drop_point_pic_no_2 %></dt>
         <dd><%= f.text_field :drop_point_pic_no_2, class: "form-control", style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -102,7 +143,7 @@
 
 
         <dt><%= f.label :drop_point_address_3 %></dt>
-        <dd><%= f.text_area :drop_point_address_3, class: 'form-control' %></dd>
+        <dd><%= f.text_area :drop_point_address_3, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
         <br>
          <dt><%= f.label :drop_point_pic_no_3 %></dt>
         <dd><%= f.text_field :drop_point_pic_no_3, class: "form-control", style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -110,7 +151,7 @@
 
 
         <dt><%= f.label :drop_point_address_4 %></dt>
-        <dd><%= f.text_area :drop_point_address_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
+        <dd><%= f.text_area :drop_point_address_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;", data: { autocomplete_source: @address}  %></dd>
         <br>
          <dt><%= f.label :drop_point_pic_no_4 %></dt>
         <dd><%= f.text_field :drop_point_pic_no_4, class: "form-control" %></dd>
