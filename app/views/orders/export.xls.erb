@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">Inquiry Date</Data></Cell>
+      <Cell><Data ss:Type="String">No</Data></Cell>
+      <Cell><Data ss:Type="String">Shipper</Data></Cell>
+      <Cell><Data ss:Type="String">Shipper Address</Data></Cell>
+      <Cell><Data ss:Type="String">Transporter</Data></Cell>
+      <Cell><Data ss:Type="String">Truck Size</Data></Cell>
+      <Cell><Data ss:Type="String">Details</Data></Cell>
+      <Cell><Data ss:Type="String">Remarks</Data></Cell>
+      <Cell><Data ss:Type="String">Datetime</Data></Cell>
+      <Cell><Data ss:Type="String">Goods Details</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up Address 1</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up PIC 1</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up Address 2</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up PIC 2</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up Address 3</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up PIC 3</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up Address 4</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up PIC 4</Data></Cell>
+      <Cell><Data ss:Type="String">Special Request</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point Date</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point Address 1</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point PIC 1</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point Address 2</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point PIC 2</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point Address 3</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point PIC 3</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point Address 4</Data></Cell>
+      <Cell><Data ss:Type="String">Drop Point PIC 4</Data></Cell>
+      <Cell><Data ss:Type="String">Trucks Size</Data></Cell>
+      <Cell><Data ss:Type="String">Trucks Reg no</Data></Cell>
+      <Cell><Data ss:Type="String">Drivers Name</Data></Cell>
+      <Cell><Data ss:Type="String">IC</Data></Cell>
+      <Cell><Data ss:Type="String">driver phone no</Data></Cell>
+      <Cell><Data ss:Type="String">Delivery Date  </Data></Cell>
+      <Cell><Data ss:Type="String">   DO request date </Data></Cell>
+      <Cell><Data ss:Type="String">  DO collection date  </Data></Cell>
+      <Cell><Data ss:Type="String"> Do number   </Data></Cell>
+      <Cell><Data ss:Type="String">   Total Tonne </Data></Cell>
+      <Cell><Data ss:Type="String"> Payment Name   </Data></Cell>
+      <Cell><Data ss:Type="String"> Tel No  </Data></Cell>
+      <Cell><Data ss:Type="String"> Acc no </Data></Cell>
+      <Cell><Data ss:Type="String">  Rate  </Data></Cell>
+      <Cell><Data ss:Type="String">   Payment Rate </Data></Cell>
+      <Cell><Data ss:Type="String">  6% GST  </Data></Cell>
+      <Cell><Data ss:Type="String">  Master Total  </Data></Cell>
+      <Cell><Data ss:Type="String">  Advance  </Data></Cell>
+      <Cell><Data ss:Type="String">   Paid </Data></Cell>
+      <Cell><Data ss:Type="String">  Commision  </Data></Cell>
+      <Cell><Data ss:Type="String">  Balance  </Data></Cell>
+      <Cell><Data ss:Type="String">  Billing Name  </Data></Cell>
+      <Cell><Data ss:Type="String">  Billing Amount  </Data></Cell>
+      <Cell><Data ss:Type="String">  6% GST  </Data></Cell>
+      <Cell><Data ss:Type="String">   Master Total </Data></Cell>
+      <Cell><Data ss:Type="String">  Billing Received  </Data></Cell>
+      <Cell><Data ss:Type="String">  Billing Balance  </Data></Cell>
+      <Cell><Data ss:Type="String">   Invoice Date </Data></Cell>
+      <Cell><Data ss:Type="String">   Invoice </Data></Cell>
+      <Cell><Data ss:Type="String"> Payment Collection   </Data></Cell>
+    </Row>
+    <% @order.each do |order| %>
+    <Row>
+      <Cell><Data ss:Type="String"><%= order.inquiry_date %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.no %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.shipper %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.shipper_address %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.transporter %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.truck_size %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.details %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.remarks %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.datetime %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.goods_description %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_address_1 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_pic_no_1%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_address_2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_pic_no_2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_address_3 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_pic_no_3 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_address_4 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.pick_up_pic_no_4 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.special_request %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_date %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_address_1 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_pic_no_1 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_address_2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_pic_no_2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_address_3 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_pic_no_3 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_address_4 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.drop_point_pic_no_4 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.trucks_capacity %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.truck_reg_no %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.ic %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.phone_no %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.delivery_date %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.do_request_date %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.do_collection_date %></Data></Cell><Cell><Data ss:Type="String"><%= order.do_number %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.total_tonne %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.payment_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.tel_no %></Data></Cell><Cell><Data ss:Type="String"><%= order.account_no %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.rate %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.payment_rate %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.gst_total_value %></Data></Cell><Cell><Data ss:Type="String"><%= order.payment_with_gst %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.payment_advance %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.payment_paid %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.payment_commision %></Data></Cell><Cell><Data ss:Type="String"><%= order.payment_balance %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.billing_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.billing_amount %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.gst_billing_total_value %></Data></Cell><Cell><Data ss:Type="String"><%= order.billing_with_gst %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.billing_received %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.billing_balance %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.invoice_date %></Data></Cell><Cell><Data ss:Type="String"><%= order.invoice %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.payment_collection %></Data></Cell>
+    </Row>
+    <% end %>
+  </Table>
+</Worksheet>
+</Workbook>

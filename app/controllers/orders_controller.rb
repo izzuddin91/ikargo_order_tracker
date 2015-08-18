@@ -19,8 +19,9 @@ class OrdersController < ApplicationController
 	def dashboard
 		@order = Order.all
 		respond_to do |format|
-			format.html
-			format.xls { render xls: generate_xls(@order)}
+		    format.html
+    format.csv { send_data @order.to_csv }
+    format.xls # { send_data @products.to_csv(col_sep: "\t") }
 		end
 	end
 
@@ -189,6 +190,17 @@ def update
     redirect_to root_path
 end
 
+
+def export
+	
+	@order = Order.order(:name)
+  	respond_to do |format|
+    format.html
+    format.csv { send_data @order.to_csv }
+    format.xls # { send_data @products.to_csv(col_sep: "\t") }
+  end
+	
+end
 
 
 

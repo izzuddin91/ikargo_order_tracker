@@ -246,5 +246,12 @@ margin-left: 500px;
 <p style="font-size:20px;">Total amount of profit:<br>
   RM<%= Order.sum(:billing_amount)%></p>
   <%end%>
+
+<p>
+  Download:
+  <%= link_to "CSV", export_path(format: "csv") %> |
+  <%= link_to "Excel", export_path(format: "xls") %>
+</p>
+
 </div>
 
