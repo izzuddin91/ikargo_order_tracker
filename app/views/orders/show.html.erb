@@ -89,6 +89,15 @@
             <br>
             <dt><%= f.label :route %></dt>
             <dd><%= @order.remarks %></dd>
+            <br>
+            <%if current_user.email != "mu@ikargo.com" %>
+            <dt><%= f.label(:payment, "Rate") %></dt>
+            <dd><%= @order.payment_rate %></dd>
+            <%end%>
+            <br>
+            <dt><%= f.label(:notes, "remarks") %></dt>
+            <dd><%= @order.notes %></dd>
+            <br>
           </dl>
         </ul>
       </div>
@@ -185,6 +194,9 @@
         <br>
         <dt><%= f.label :phone_no %></dt>
         <dd><%= @order.phone_no %></dd>
+        <br>
+        <dt><%= f.label :driver_remarks %></dt>
+        <dd><%= @order.driver_remarks %></dd>
       </dl>
     </div>
 
@@ -264,6 +276,9 @@
         <dt><%= f.label :name %></dt>
         <dd><%= @order.billing_name %></dd>
         <br>
+<dt><%= f.label(:billing_rate, "rate") %></dt>
+        <dd><%= @order.billing_rate%></dd>
+        <br>
         <dt><%= f.label :amount %></dt>
         <dd><%= @order.billing_amount%></dd>
         <br>
@@ -290,9 +305,7 @@
         <dt><%= f.label :invoice %></dt>
         <dd><%= @order.invoice %></dd>
         <br>
-        <dt><%= f.label :payment_collection %></dt>
-        <dd><%= @order.payment_collection %></dd>
-        <br>
+
       </dl>
     </div>
     <dd><%= link_to "Edit", edit_order_path, class: "btn btn-primary", style: "margin-right:10px;" %>

@@ -181,18 +181,24 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
           <%= x.remarks %>
         </button>
       </td>
+
       <td>
        <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="reg no: <%= x.truck_reg_no %> <br> name: <%= x.name %><br>  IC: <%= x.ic %><br>  phone: <%= x.phone_no %>">
         <%= x.truck_size %>
       </button>
     </td>
-    <td><%= x.payment_rate %></td>
+
+      <td>
+       <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="created/last update by:<br> <%= x.user_email.split("@")[0] %>">
+        <%= x.payment_rate %>
+      </button>
+    </td>
+    
     <td>
      <button type="button" class="drop_point_address" data-container="body" data-toggle="popover" data-placement="top"data-html="true" data-content="drop point address:<br>  <%= x.drop_point_address_1 %>">
       <%= x.transporter %>
     </button>
   </td>
-
 
   <td><% if x.delivered == "OTW" %>
     <p style="color:#CC6600;">OTW</p>

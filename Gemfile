@@ -59,4 +59,5 @@ gem 'pg_search'
 gem 'jquery-ui-rails'
 gem 'turbolinks' 
 gem 'devise'
+gem 'mail'
 

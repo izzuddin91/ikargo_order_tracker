@@ -1,6 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
+      t.string :user_email
     	t.date :inquiry_date
     	t.string :no
     	t.string :shipper
@@ -9,7 +10,8 @@ class CreateOrders < ActiveRecord::Migration
       t.string :truck_size
     	t.string :details
     	t.text :remarks
- 
+      #notes on that particular shipment
+      t.string :notes
       ##pick up
 
       t.date :datetime
@@ -22,7 +24,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :pick_up_pic_no_3
       t.text :pick_up_address_4
       t.string :pick_up_pic_no_4
-      t.string :special_request
+      
 
 
       ##drop point
@@ -35,7 +37,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :drop_point_pic_no_3
        t.text :drop_point_address_4
       t.string :drop_point_pic_no_4
-
+      #any request regarding drop point 
       t.string :special_request
 
       ##driver
@@ -45,6 +47,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :name
       t.string :ic
       t.string :phone_no
+      t.string :driver_remarks
 
       ##delivery flow
 
@@ -71,12 +74,14 @@ class CreateOrders < ActiveRecord::Migration
       ##billing_info
 
       t.string :billing_name
+      #rate for billing
+      t.string :billing_rate
       t.decimal :billing_amount, precision: 8, scale: 2, default: 0
       t.decimal :billing_received, precision: 8, scale: 2, default: 0
       t.decimal :billing_balance, precision: 8, scale: 2, default: 0
       t.date :invoice_date
       t.string :invoice
-      t.string :payment_collection
+      
 
       ##gst
 
@@ -91,7 +96,6 @@ class CreateOrders < ActiveRecord::Migration
       t.string :billing_with_gst
 
       ##delivery status
-
       t.string :delivered
       t.timestamps null: false
 

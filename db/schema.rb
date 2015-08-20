@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20150810015851) do
   enable_extension "plpgsql"
 
   create_table "orders", force: :cascade do |t|
+    t.string   "user_email"
     t.date     "inquiry_date"
     t.string   "no"
     t.string   "shipper"
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150810015851) do
     t.string   "truck_size"
     t.string   "details"
     t.text     "remarks"
+    t.string   "notes"
     t.date     "datetime"
     t.string   "goods_description"
     t.text     "pick_up_address_1"
@@ -35,7 +37,6 @@ ActiveRecord::Schema.define(version: 20150810015851) do
     t.string   "pick_up_pic_no_3"
     t.text     "pick_up_address_4"
     t.string   "pick_up_pic_no_4"
-    t.string   "special_request"
     t.date     "drop_point_date"
     t.text     "drop_point_address_1"
     t.string   "drop_point_pic_no_1"
@@ -45,11 +46,13 @@ ActiveRecord::Schema.define(version: 20150810015851) do
     t.string   "drop_point_pic_no_3"
     t.text     "drop_point_address_4"
     t.string   "drop_point_pic_no_4"
+    t.string   "special_request"
     t.string   "trucks_capacity"
     t.string   "truck_reg_no"
     t.string   "name"
     t.string   "ic"
     t.string   "phone_no"
+    t.string   "driver_remarks"
     t.date     "delivery_date"
     t.date     "do_request_date"
     t.date     "do_collection_date"
@@ -66,12 +69,12 @@ ActiveRecord::Schema.define(version: 20150810015851) do
     t.decimal  "payment_balance",               precision: 8, scale: 2, default: 0.0
     t.string   "rate"
     t.string   "billing_name"
+    t.string   "billing_rate"
     t.decimal  "billing_amount",                precision: 8, scale: 2, default: 0.0
     t.decimal  "billing_received",              precision: 8, scale: 2, default: 0.0
     t.decimal  "billing_balance",               precision: 8, scale: 2, default: 0.0
     t.date     "invoice_date"
     t.string   "invoice"
-    t.string   "payment_collection"
     t.boolean  "payment_calculate_gst",                                 default: false
     t.boolean  "payment_reverse_calculate_gst",                         default: false
     t.boolean  "billing_calculate_gst",                                 default: false
