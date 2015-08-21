@@ -90,9 +90,6 @@ var projects = $("#order_name").data("autocomplete-source");
                 "<br><span style='font-size: 60%;'>Comment: " + item.other + "</span></a>" )
             .appendTo( ul );
     };
-
-
-
 });
 </script>
 
@@ -153,8 +150,8 @@ var projects = $("#order_name").data("autocomplete-source");
             <dd><%= f.text_field :remarks, class: 'form-control' %></dd>
             <br>
             <%if current_user.email != "mu@ikargo.com"%>
-            <dt><%= f.label(:payment, "Rate") %></dt>
-            <dd><%= f.text_field :payment_rate, class: 'form-control' %></dd>
+           <dt><%= f.label(:payment_advance, "Rate" )  %></dt>
+        <dd><%= f.text_field :payment_with_gst, class: 'form-control' %></dd>
             <%end%>
             <br>
             <dt><%= f.label(:notes, "remarks") %></dt>
@@ -352,10 +349,10 @@ var projects = $("#order_name").data("autocomplete-source");
         <dt><%= f.label :rate %></dt>
         <dd><%= f.text_field :rate, class: 'form-control' %></dd>
         <br>
-        <%if current_user.email == "mu@ikargo.com" %>
+       
         <dt><%= f.label :payment %></dt>
         <dd><%= f.text_field :payment_rate, class: 'form-control' %></dd>
-        <%end%>
+        
         <br>
         <p>  calculate GST <%= f.check_box :payment_calculate_gst %>   GST included?<%= f.check_box :payment_reverse_calculate_gst %></p>
         <br>  
@@ -363,8 +360,10 @@ var projects = $("#order_name").data("autocomplete-source");
         <dt><%= f.label(:gst_total_value, "6% GST(AUTO)", style: "color:red;") %></dt>
         <dd><%= f.text_field :gst_total_value, class: 'form-control' %></dd>
         <br>
+        <%if current_user.email == "mu@ikargo.com" %>
         <dt><%= f.label(:payment_advance, "total after GST", style: "color:green;")  %></dt>
         <dd><%= f.text_field :payment_with_gst, class: 'form-control' %></dd>
+        <%end%>
         <br>
         <dt><%= f.label :payment_advance %></dt>
         <dd><%= f.text_field :payment_advance, class: 'form-control' %></dd>

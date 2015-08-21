@@ -184,8 +184,10 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
     </td>
 
       <td>
-       <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="created/last update by:<br> <%= x.user_email.split("@")[0] %>">
-        <%= x.payment_rate %>
+       <% x.records.each do |y| %>
+       <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="created by:<br> <%= y.changer %><br>rate:<%= y.rate_history%><br>created at:<%= y.created_at%>">
+        <%end%>
+        <%= x.payment_with_gst %>
       </button>
     </td>
     

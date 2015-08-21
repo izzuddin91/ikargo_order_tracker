@@ -17,6 +17,7 @@ class Order < ActiveRecord::Base
 		end
 	end
 	belongs_to :user
+	has_many :records
 end
 
 

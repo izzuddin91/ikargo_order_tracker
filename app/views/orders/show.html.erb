@@ -84,7 +84,7 @@ $(document).on('ready page:load', function(){
             <br>
             <%if current_user.email != "mu@ikargo.com" %>
             <dt><%= f.label(:payment, "Rate") %></dt>
-            <dd><%= @order.payment_rate %></dd>
+            <dd><%= @order.payment_with_gst %></dd>
             <%end%>
             <br>
             <dt><%= f.label(:notes, "remarks") %></dt>
@@ -241,11 +241,9 @@ $(document).on('ready page:load', function(){
         <br>
         <dt><%= f.label(:gst_total_value, "6% GST")%></dt>
         <dd>  <%= @order.gst_total_value %>
-        
-
         </dd>
         <br>
-        <dt><%= f.label(:gst_total_value, "Master Total") %></dt>
+        <dt><%= f.label(:gst_total_value, "Total After GST") %></dt>
         <dd><%= @order.payment_with_gst %></dd>
         <br>
         <dt><%= f.label :advance %></dt>

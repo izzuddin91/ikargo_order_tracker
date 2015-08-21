@@ -24,6 +24,8 @@ class OrdersController < ApplicationController
 			c[:other] = x.driver_remarks
 			@driver_info << c
 		end
+
+
 	end
 
 	def dashboard
@@ -104,9 +106,10 @@ def create
 		billing_rate: params[:order][:billing_rate],
 		driver_remarks: params[:order][:driver_remarks]
 		)
-if a != "mu@ikargo.com"
-UserMailer.create_edit_order(@order).deliver
-end
+# if a != "mu@ikargo.com"
+# UserMailer.create_edit_order(@order).deliver
+# end
+@records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
 redirect_to root_path(@order)
 end
 
@@ -197,9 +200,10 @@ def update
 		billing_rate: params[:order][:billing_rate],
 		driver_remarks: params[:order][:driver_remarks]
 		)
-if a != "mu@ikargo.com"
-UserMailer.edit_order(@order).deliver
-end
+# if a != "mu@ikargo.com"
+# UserMailer.edit_order(@order).deliver
+# end
+@records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
       # Handle a successful update.
       redirect_to root_path(@order)
     end
