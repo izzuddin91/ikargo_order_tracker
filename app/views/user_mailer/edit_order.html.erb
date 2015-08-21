@@ -5,13 +5,14 @@
   <title>Document</title>
 </head>
 <body>
-  <h1> A new order has been created: <br> </h1>
+  <h1> Changes made for shipment <%= @order.remarks %> <br>
+  <h3> Order no: <%= @order.no %></h3> </h1>
   <ul>
+    <p> This details for this shipment had been changed: </p>
     <li> By: <%= @order.user_email %></li><br>
     <li> Order no: <%= @order.no %></li><br>
     <li> Shipper: <%= @order.shipper %></li><br>
     <li> Transporter: <%= @order.transporter %></li><br>
-    <li> Route: <%= @order.remarks %></li><br>
     <li style= "color:red;"> Rate: <%= @order.payment_rate %></li>
   </ul>
 </body>

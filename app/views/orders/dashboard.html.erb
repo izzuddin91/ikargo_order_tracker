@@ -46,6 +46,8 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
   .searchBy{
     float:left;
   }
+
+  
   </style>
 
   <div class="col-md-10 col-md-offset-1" style="
@@ -148,26 +150,19 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
   <% if !@order.nil? %>
   <tr>
    <td>
-    <button type="button"  class= "pick_up_date"data-container="body" data-toggle="popover" data-placement="right" data-content="pickup date <%= x.datetime %>" >
+    <button type="button"  class= "pick_up_date"data-container="body" data-toggle="popover" data-placement="right" data-content="pickup date: <%= x.datetime %>" >
      <%= x.inquiry_date %>
    </button>
  </td>
  <td>
-  <button type="button"  class= "drop_point_date" data-container="body" data-toggle="popover" data-placement="top" data-content="drop point date <%= x.drop_point_date %>" >
+  <button type="button"  class= "drop_point_date" data-container="body" data-toggle="popover" data-placement="top" data-content="drop point date: <%= x.drop_point_date %>" >
    <%= x.no %>
  </td>
-
-
-
-
  <td>
 
    <button type="button"  class= "shipper_address" data-container="body" data-html="true"data-toggle="popover" data-placement="top" data-content="Shipper address:<br> <%= x.shipper_address %>" >
   <%= x.shipper %>
 </td>
-
-
-
 <td>
   <% if !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? && !x.pick_up_address_3.empty?&& !x.pick_up_address_4.empty?%>
   <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="bottom" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%><br><br>2.<%= x.pick_up_address_2%><br>PIC no:<%=x.pick_up_pic_no_2%><br><br>3.<%= x.pick_up_address_3%><br>PIC no:<%=x.pick_up_pic_no_3%><br><br>4.<%= x.pick_up_address_4%><br>PIC no:<%=x.pick_up_pic_no_4%>">
@@ -189,13 +184,13 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
     </td>
 
       <td>
-       <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="created/last update by:<br> <%= x.user_email.split("@")[0] %>">
+       <button type="button" class="truck_info" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="created/last update by:<br> <%= x.user_email.split("@")[0] %>">
         <%= x.payment_rate %>
       </button>
     </td>
     
     <td>
-     <button type="button" class="drop_point_address" data-container="body" data-toggle="popover" data-placement="top"data-html="true" data-content="drop point address:<br>  <%= x.drop_point_address_1 %>">
+     <button type="button" class="drop_point_address" data-container="body" data-toggle="popover" data-placement="left"data-html="true" data-content="drop point address:<br>  <%= x.drop_point_address_1 %>">
       <%= x.transporter %>
     </button>
   </td>
@@ -252,12 +247,10 @@ margin-left: 500px;
 <p style="font-size:20px;">Total amount of profit:<br>
   RM<%= Order.sum(:billing_amount)%></p>
   <%end%>
-
 <p>
   Download:
   <%= link_to "CSV", export_path(format: "csv") %> |
   <%= link_to "Excel", export_path(format: "xls") %>
 </p>
-
 </div>
 

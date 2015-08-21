@@ -8,7 +8,15 @@ class UserMailer < ApplicationMailer
   def create_edit_order(order)
     @order = order
     mail(to: "izzuddin@ikargo.com",
-     subject:  "orders created/edited",
+     subject:  "New order has been created",
+     date: Time.now)
+  end
+
+
+  def edit_order(order)
+     @order = order
+     mail(to: "izzuddin@ikargo.com",
+     subject:  "Changes on shipment's details",
      date: Time.now)
   end
 end

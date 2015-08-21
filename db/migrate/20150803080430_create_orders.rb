@@ -25,8 +25,6 @@ class CreateOrders < ActiveRecord::Migration
       t.text :pick_up_address_4
       t.string :pick_up_pic_no_4
       
-
-
       ##drop point
       t.date :drop_point_date
       t.text :drop_point_address_1
@@ -69,8 +67,6 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal :payment_commision, precision: 8, scale: 2, default: 0
       t.decimal :payment_balance , precision: 8, scale: 2, default: 0
       t.string :rate
-
-
       ##billing_info
 
       t.string :billing_name
@@ -81,8 +77,6 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal :billing_balance, precision: 8, scale: 2, default: 0
       t.date :invoice_date
       t.string :invoice
-      
-
       ##gst
 
       t.boolean :payment_calculate_gst, :default => false

@@ -4,6 +4,38 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
+ <!-- source for changing color at menu  -->
+<link rel='stylesheet' href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<style>
+ul {
+  list-style-type: none;
+}
+ul li {
+  margin-bottom: 10px;
+}
+.btn-custom {
+  background-color: transparent;
+  box-shadow: 3px 3px 3px 3px #888888;
+}
+.action-button li button.active {
+  background-color: grey; color:white;
+}
+</style>
+
+<script>
+$(document).on('ready page:load', function(){
+  $('.action-button button').click(function() {
+    $('.action-button button.active').removeClass('active');
+    $(this).addClass('active');
+  })
+});
+</script>
+
+
 <script>
 $(function() {
   $( ".date_of_birth" ).datepicker({
@@ -156,32 +188,31 @@ $('#order_billing_reverse_calculate_gst').on('change', function () {
 }
 
 
-
 </script>
-
-
   <body <%= "data-no-turbolink" if request.post?%> >
 <div class="row">
-  <div class="col-md-2 col-md-offset-2">
+    <div class="col-md-2 col-md-offset-2">
     <br><br><br><br>
     <br>
     <br><br>
-    <a href="#order" aria-controls="order" role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Order</button></a>
-    <br>
-    <a href="#personal_info" aria-controls="personal_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Pick Up info</button></a>
-    <br>
-    <a href="#employment_info" aria-controls="employment_info"role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Drop Point</button></a>
-    <br>
-    <a href="#others_info" aria-controls="others_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Driver</button></a>
-    <br>
-    <a href="#system_info" aria-controls="system_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Delivery Flow</button></a>
-    <br>
-    <%if current_user.email == "mu@ikargo.com" %>
-    <a href="#payment_info" aria-controls="system_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Payment info</button></a>
-    <br>
-    <a href="#billing_info" aria-controls="system_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-default btn-block">Billing info</button></a>
-    <%end%>
+    <ul class="action-button">
 
+    <li><a href="#order" aria-controls="order" role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Order</button></a></li>
+    <br>
+    <li><a href="#personal_info" aria-controls="personal_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Pick Up info</button></a></li>
+    <br>
+    <li><a href="#employment_info" aria-controls="employment_info"role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Drop Point</button></a></li>
+    <br>
+    <li><a href="#others_info" aria-controls="others_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Driver</button></a></li>
+    <br>
+    <li><a href="#system_info" aria-controls="system_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Delivery Flow</button></a></li>
+    <br>
+    <% if current_user.email == "mu@ikargo.com" %>
+    <li><a href="#payment_info" aria-controls="system_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Payment info</button></a></li>
+    <br>
+    <li><a href="#billing_info" aria-controls="system_info" role="tab" data-toggle="tab"><button type="button" class="btn btn-custom btn-block">Billing info</button></a></li>
+    </ul>
+    <%end%>
   </div>
  <%= render 'form' %>
 

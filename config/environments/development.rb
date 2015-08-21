@@ -21,8 +21,8 @@ config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            'gibek1241@gmail.com',
-  password:             'eminem12E',
+  user_name:            'ikargoprogrammer@gmail.com',
+  password:             'rubyonrails',
   authentication:       'plain',
   enable_starttls_auto: true 
   

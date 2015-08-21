@@ -14,8 +14,9 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">Transporter</Data></Cell>
       <Cell><Data ss:Type="String">Truck Size</Data></Cell>
       <Cell><Data ss:Type="String">Details</Data></Cell>
+      <Cell><Data ss:Type="String">Route</Data></Cell>
       <Cell><Data ss:Type="String">Remarks</Data></Cell>
-      <Cell><Data ss:Type="String">Datetime</Data></Cell>
+      <Cell><Data ss:Type="String">Pick up date</Data></Cell>
       <Cell><Data ss:Type="String">Goods Details</Data></Cell>
       <Cell><Data ss:Type="String">Pick up Address 1</Data></Cell>
       <Cell><Data ss:Type="String">Pick up PIC 1</Data></Cell>
@@ -25,7 +26,6 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">Pick up PIC 3</Data></Cell>
       <Cell><Data ss:Type="String">Pick up Address 4</Data></Cell>
       <Cell><Data ss:Type="String">Pick up PIC 4</Data></Cell>
-      <Cell><Data ss:Type="String">Special Request</Data></Cell>
       <Cell><Data ss:Type="String">Drop Point Date</Data></Cell>
       <Cell><Data ss:Type="String">Drop Point Address 1</Data></Cell>
       <Cell><Data ss:Type="String">Drop Point PIC 1</Data></Cell>
@@ -35,6 +35,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">Drop Point PIC 3</Data></Cell>
       <Cell><Data ss:Type="String">Drop Point Address 4</Data></Cell>
       <Cell><Data ss:Type="String">Drop Point PIC 4</Data></Cell>
+      <Cell><Data ss:Type="String">Special Request</Data></Cell>
       <Cell><Data ss:Type="String">Trucks Size</Data></Cell>
       <Cell><Data ss:Type="String">Trucks Reg no</Data></Cell>
       <Cell><Data ss:Type="String">Drivers Name</Data></Cell>
@@ -57,6 +58,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">  Commision  </Data></Cell>
       <Cell><Data ss:Type="String">  Balance  </Data></Cell>
       <Cell><Data ss:Type="String">  Billing Name  </Data></Cell>
+      <Cell><Data ss:Type="String"> Rate </Data></Cell>
       <Cell><Data ss:Type="String">  Billing Amount  </Data></Cell>
       <Cell><Data ss:Type="String">  6% GST  </Data></Cell>
       <Cell><Data ss:Type="String">   Master Total </Data></Cell>
@@ -64,7 +66,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">  Billing Balance  </Data></Cell>
       <Cell><Data ss:Type="String">   Invoice Date </Data></Cell>
       <Cell><Data ss:Type="String">   Invoice </Data></Cell>
-      <Cell><Data ss:Type="String"> Payment Collection   </Data></Cell>
+
     </Row>
     <% @order.each do |order| %>
     <Row>
@@ -76,6 +78,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String"><%= order.truck_size %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.details %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.remarks %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.notes %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.datetime %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.goods_description %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.pick_up_address_1 %></Data></Cell>
@@ -114,12 +117,12 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String"><%= order.payment_paid %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.payment_commision %></Data></Cell><Cell><Data ss:Type="String"><%= order.payment_balance %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.billing_name %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= order.billing_rate %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.billing_amount %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.gst_billing_total_value %></Data></Cell><Cell><Data ss:Type="String"><%= order.billing_with_gst %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.billing_received %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.billing_balance %></Data></Cell>
       <Cell><Data ss:Type="String"><%= order.invoice_date %></Data></Cell><Cell><Data ss:Type="String"><%= order.invoice %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= order.payment_collection %></Data></Cell>
     </Row>
     <% end %>
   </Table>
