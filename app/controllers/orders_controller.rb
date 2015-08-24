@@ -219,9 +219,10 @@ respond_to do |format|
 
     def destroy
     	@order = Order.find(params[:id])
-    	@record = Record.find_by(order_id: @order.id) 
+    	if !@order.records.nil?
+    		@order.records.destroy
+    	end
     	@order.destroy
-    	@record.destroy
     # flash[:success] = "User deleted"
     redirect_to root_path
   end
