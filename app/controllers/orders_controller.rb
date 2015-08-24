@@ -108,12 +108,8 @@ def create
 		)
 UserMailer.create_edit_order(@order).deliver
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
-respond_to do |format|
-			format.html
-			format.csv { send_data @order.to_csv }
-    format.xls # { send_data @products.to_csv(col_sep: "\t") }
-  end
-redirect_to root_path(@order)
+redirect_to "/export"
+
 end
 
 def edit
@@ -207,13 +203,8 @@ if current_user.email != "mu@ikargo.com"
 UserMailer.edit_order(@order).deliver
 end
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
-respond_to do |format|
-			format.html
-			format.csv { send_data @order.to_csv }
-    format.xls # { send_data @products.to_csv(col_sep: "\t") }
-  end
+redirect_to "/export"
       # Handle a successful update.
-      redirect_to root_path(@order)
     end
 
 
@@ -236,7 +227,7 @@ respond_to do |format|
   		format.csv { send_data @order.to_csv }
     format.xls # { send_data @products.to_csv(col_sep: "\t") }
   end
-
+  redirect_to root_path(@order)
 end
 
 private
