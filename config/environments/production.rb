@@ -43,6 +43,7 @@ config.action_mailer.smtp_settings = {
   password:             'rubyonrails',
   authentication:       'plain',
   enable_starttls_auto: true 
+}
   
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
