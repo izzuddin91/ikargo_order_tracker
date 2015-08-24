@@ -106,10 +106,13 @@ def create
 		billing_rate: params[:order][:billing_rate],
 		driver_remarks: params[:order][:driver_remarks]
 		)
-# if a != "mu@ikargo.com"
 UserMailer.create_edit_order(@order).deliver
-# end
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
+respond_to do |format|
+			format.html
+			format.csv { send_data @order.to_csv }
+    format.xls # { send_data @products.to_csv(col_sep: "\t") }
+  end
 redirect_to root_path(@order)
 end
 
@@ -200,10 +203,15 @@ def update
 		billing_rate: params[:order][:billing_rate],
 		driver_remarks: params[:order][:driver_remarks]
 		)
-# if a != "mu@ikargo.com"
+if current_user.email != "mu@ikargo.com"
 UserMailer.edit_order(@order).deliver
-# end
+end
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
+respond_to do |format|
+			format.html
+			format.csv { send_data @order.to_csv }
+    format.xls # { send_data @products.to_csv(col_sep: "\t") }
+  end
       # Handle a successful update.
       redirect_to root_path(@order)
     end
@@ -211,7 +219,9 @@ UserMailer.edit_order(@order).deliver
 
     def destroy
     	@order = Order.find(params[:id])
+    	@record = Record.find_by(order_id: @order.id) 
     	@order.destroy
+    	@record.destroy
     # flash[:success] = "User deleted"
     redirect_to root_path
   end
@@ -227,8 +237,6 @@ UserMailer.edit_order(@order).deliver
   end
 
 end
-
-
 
 private
 
