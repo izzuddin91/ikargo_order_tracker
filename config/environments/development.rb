@@ -16,13 +16,13 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 config.action_mailer.delivery_method = :smtp
-config.action_mailer.default_url_options = { :host => "https://secure-crag-4260.herokuapp.com" }
+#config.action_mailer.default_url_options = { :host => "https://secure-crag-4260.herokuapp.com" }
 config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            'ikargoprogrammer@gmail.com',
-  password:             'rubyonrails',
+  user_name:            'gibek1241@gmail.com',
+  password:             'eminem12E',
   authentication:       'plain',
   enable_starttls_auto: true 
   
