@@ -107,7 +107,7 @@ def create
 		driver_remarks: params[:order][:driver_remarks]
 		)
 # if a != "mu@ikargo.com"
-# UserMailer.create_edit_order(@order).deliver
+UserMailer.create_edit_order(@order).deliver
 # end
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
 redirect_to root_path(@order)
@@ -201,7 +201,7 @@ def update
 		driver_remarks: params[:order][:driver_remarks]
 		)
 # if a != "mu@ikargo.com"
-# UserMailer.edit_order(@order).deliver
+UserMailer.edit_order(@order).deliver
 # end
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
       # Handle a successful update.
