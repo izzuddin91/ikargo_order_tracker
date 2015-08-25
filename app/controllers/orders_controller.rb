@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 	before_filter :authenticate_user!
 	
+
 	def index
 		@order = Order.new
 		@address = []
@@ -24,9 +25,8 @@ class OrdersController < ApplicationController
 			c[:other] = x.driver_remarks
 			@driver_info << c
 		end
-
-
 	end
+
 
 	def dashboard
 		@order = Order.all
@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
     format.xls # { send_data @products.to_csv(col_sep: "\t") }
   end
 end
+
 
 def create
 	a = current_user.email
@@ -106,11 +107,11 @@ def create
 		billing_rate: params[:order][:billing_rate],
 		driver_remarks: params[:order][:driver_remarks]
 		)
-UserMailer.create_edit_order(@order).deliver
+# UserMailer.create_edit_order(@order).deliver
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
 redirect_to root_path(@order)
-
 end
+
 
 def edit
 	@address = []
@@ -200,9 +201,11 @@ def update
 		driver_remarks: params[:order][:driver_remarks]
 		)
 if current_user.email != "mu@ikargo.com"
-UserMailer.edit_order(@order).deliver
+# UserMailer.edit_order(@order).deliver
 end
+if @order.payment_with_gst != Record.last.rate_history
 @records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
+end
 redirect_to root_path(@order)
       # Handle a successful update.
     end

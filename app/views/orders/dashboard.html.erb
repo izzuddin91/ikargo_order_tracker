@@ -164,13 +164,14 @@ $("#tracker_no").autocomplete({source:$("#tracker_no").data("autocomplete-source
   <%= x.shipper %>
 </td>
 <td>
-  <% if !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? && !x.pick_up_address_3.empty?&& !x.pick_up_address_4.empty?%>
+  
+  <% if !x.pick_up_address_1.blank?  && !x.pick_up_address_2.blank? && !x.pick_up_address_3.blank?&& !x.pick_up_address_4.blank?%>
   <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="bottom" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%><br><br>2.<%= x.pick_up_address_2%><br>PIC no:<%=x.pick_up_pic_no_2%><br><br>3.<%= x.pick_up_address_3%><br>PIC no:<%=x.pick_up_pic_no_3%><br><br>4.<%= x.pick_up_address_4%><br>PIC no:<%=x.pick_up_pic_no_4%>">
-    <%elsif !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? && !x.pick_up_address_3.empty? %>
+    <%elsif !x.pick_up_address_1.blank?  && !x.pick_up_address_2.blank? && !x.pick_up_address_3.blank? %>
     <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%><br>2.<%= x.pick_up_address_2%><br>PIC no:<%=x.pick_up_pic_no_2%><br>3.<%= x.pick_up_address_3%><br>PIC no:<%=x.pick_up_pic_no_3%>">
-      <%elsif !x.pick_up_address_1.empty?  && !x.pick_up_address_2.empty? %>
+      <%elsif !x.pick_up_address_1.blank?  && !x.pick_up_address_2.blank? %>
       <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%><br>2.<%= x.pick_up_address_2%><br>PIC no:<%=x.pick_up_pic_no_2%>">
-        <%elsif !x.pick_up_address_1.empty? %>
+        <%elsif !x.pick_up_address_1.blank? %>
         <button type="button"  class="shipper_address" data-container="body" data-html="true" data-toggle="popover" data-placement="top" data-content="pick up address: <br>1.<%= x.pick_up_address_1 %><br>PIC no:<%=x.pick_up_pic_no_1%>">
           <%end%>
           <%= x.remarks %>
