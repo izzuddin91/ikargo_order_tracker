@@ -155,7 +155,7 @@ var projects = $("#order_name").data("autocomplete-source");
             <%end%>
             <br>
             <dt><%= f.label :notes %></dt>
-            <dd><%= f.text_field :notes, class: 'form-control' %></dd>
+            <dd><%= f.text_area :notes, class: 'form-control' %></dd>
             <br>
 
           </dl>
@@ -327,9 +327,18 @@ var projects = $("#order_name").data("autocomplete-source");
         <dd><%= f.text_field :total_tonne, class: 'form-control' %></dd>
         <br>
 
-           
-        <dt><%= f.label :delivered_status %></dt>
-              <dd><select id="delivered" name="delivered"><option selected='selected'><p style="color:blue;">OTW</p></option><option><p style="color:red;">Lorry Broken</p></option><option><p style="color:red;">Accident</p></option><option><p style="color:red;">Driver Absent</p></option><option><p style="color:red;">Overweight</p></option><option><p style="color:green;">DONE!</p></option></select></dd>
+        
+        <dt><%= f.label :delivery_status%></dt>
+        <dd>
+          <select name="order[delivered]" id="delivered">
+            <option value="OTW" selected = "selected" >OTW</option>
+            <option value="Accident">Accident</option>
+            <option value="Driver Absent">Driver Absent</option>
+            <option value="Overweight">Overweight</option>
+            <option value="DONE!">DONE!</option>
+          </select>
+
+        </dd>
         <br>
       </dl>
     </div>
