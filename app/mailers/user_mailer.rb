@@ -137,8 +137,8 @@ class UserMailer < ApplicationMailer
     file.rewind
     a = file.path
     attachments['report.csv'] = File.read(a)
-    if @order.user_email == "richard@ikargo.com"
-      mail(to: "izzuddin@ikargo.com",
+    if @order.user_email == "izzuddin@ikargo.com "
+      mail(to: "richard@ikargo.com",
         bcc: "mu@ikargo.com",
         cc: "aru@ikargo.com",
         subject:  "New order has been created",
