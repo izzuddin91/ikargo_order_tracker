@@ -8,6 +8,7 @@ class UserMailer < ApplicationMailer
   #
   def create_edit_order(order, file)
    @order = order
+ 
    CSV.open(file, 'rb+', 
     :write_headers => true,
     :headers => [
@@ -137,7 +138,7 @@ class UserMailer < ApplicationMailer
     file.rewind
     a = file.path
     attachments['report.csv'] = File.read(a)
-    if @order.user_email == "izzuddin@ikargo.com "
+    if @order.user_email == "izzuddin@ikargo.com"
       mail(to: "richard@ikargo.com",
         bcc: "mu@ikargo.com",
         cc: "aru@ikargo.com",
