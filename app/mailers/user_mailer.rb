@@ -110,29 +110,35 @@ class UserMailer < ApplicationMailer
 @order.delivery_date,
 @order.do_request_date,
 @order.do_collection_date,
+@order.do_number,
 @order.total_tonne,
 @order.payment_name,
 @order.tel_no,
+@order.account_no,
 @order.rate,
 @order.payment_rate,
 @order.gst_total_value,
+@order.payment_with_gst,
 @order.payment_advance,
 @order.payment_paid,
 @order.payment_commision,
+@order.payment_balance,
 @order.billing_name,
 @order.billing_rate,
 @order.billing_amount,
 @order.gst_billing_total_value,
+@order.billing_with_gst,
 @order.billing_received,
 @order.billing_balance,
-@order.invoice_date
+@order.invoice_date,
+@order.invoice
   ]
     end
     file.rewind
     a = file.path
     attachments['report.csv'] = File.read(a)
-    if @order.user_email == "izzuddin@ikargo.com"
-      mail(to: "richard@ikargo.com",
+    if @order.user_email == "richard@ikargo.com"
+      mail(to: "izzuddin@ikargo.com",
         bcc: "mu@ikargo.com",
         cc: "aru@ikargo.com",
         subject:  "New order has been created",
@@ -166,3 +172,7 @@ class UserMailer < ApplicationMailer
      date: Time.now)
   end
 end
+
+
+
+
