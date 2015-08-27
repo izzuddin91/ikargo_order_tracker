@@ -6,9 +6,11 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.create_edit_order.subject
   #
+
+
+
   def create_edit_order(order, file)
    @order = order
- 
    CSV.open(file, 'rb+', 
     :write_headers => true,
     :headers => [
@@ -61,7 +63,7 @@ class UserMailer < ApplicationMailer
 @order.notes,
 @order.trucks_capacity,
 @order.truck_reg_no,
-(@order.name + @order.ic),
+("#{@order.name}"+"\n"+" #{@order.ic}"),
 @order.phone_no,
 @order.drop_point_date,
 @order.drop_point_address_1,
@@ -89,9 +91,9 @@ class UserMailer < ApplicationMailer
     a = file.path
     attachments['report.csv'] = File.read(a)
     # if @order.user_email == "izzuddin@ikargo.com"
-      mail(to: "izzuddin@ikargo.com",
+      mail(to: ["izzuddin@ikargo.com", "izzuddin91@me.com", "mu@ikargo.com", "richard@ikargo.com"],
     #     bcc: "mu@ikargo.com",
-        cc: "aru@ikargo.com",
+        # cc: "aru@ikargo.com",
         subject:  "New order has been created",
         date: Time.now)
     # elsif @order.user_email == "mu@ikargo.com"
@@ -117,32 +119,38 @@ class UserMailer < ApplicationMailer
   end
 
   def edit_order(order)
-     @order = order
-     if @order.user_email == "izzuddin@ikargo.com"
-      mail(to: "richard@ikargo.com",
-        bcc: "mu@ikargo.com",
-        cc: "aru@ikargo.com",
-        subject:  "Changes on shipments details",
-        date: Time.now)
-    elsif @order.user_email == "mu@ikargo.com"
-      mail(to:"richard@ikargo.com",
-        bcc: "aru@ikargo.com",
-        cc: "izzuddin.muhamad@yahoo.com",
-        subject:  "Changes on shipments details",
-        date: Time.now)
-    elsif @order.user_email == "richard@ikargo.com"
-      mail(to:"mu@ikargo.com",
-        bcc: "aru@ikargo.com",
-        cc: "izzuddin.muhamad@yahoo.com",
-        subject:  "Changes on shipments details",
-        date: Time.now)
-    elsif @order.user_email == "aru@ikargo.com"
-      mail(to:"mu@ikargo.com",
-        bcc: "richard@ikargo.com",
-        cc: "izzuddin.muhamad@yahoo.com",
-        subject:  "Changes on shipments details",
-        date: Time.now)
-    end
+   @order = order
+   mail(to: ["izzuddin@ikargo.com", "izzuddin91@me.com", "mu@ikargo.com", "richard@ikargo.com"],
+    subject:  "Changes on shipments details",
+    date: Time.now)
+   
+    #  if @order.user_email == "izzuddin@ikargo.com"
+    #   mail(to: "richard@ikargo.com",
+    #     bcc: "mu@ikargo.com",
+    #     cc: "aru@ikargo.com",
+    #     subject:  "Changes on shipments details",
+    #     date: Time.now)
+    # elsif @order.user_email == "mu@ikargo.com"
+    #   mail(to:"richard@ikargo.com",
+    #     bcc: "aru@ikargo.com",
+    #     cc: "izzuddin.muhamad@yahoo.com",
+    #     subject:  "Changes on shipments details",
+    #     date: Time.now)
+    # elsif @order.user_email == "richard@ikargo.com"
+    #   mail(to:"mu@ikargo.com",
+    #     bcc: "aru@ikargo.com",
+    #     cc: "izzuddin.muhamad@yahoo.com",
+    #     subject:  "Changes on shipments details",
+    #     date: Time.now)
+    # elsif @order.user_email == "aru@ikargo.com"
+    #   mail(to:"mu@ikargo.com",
+    #     bcc: "richard@ikargo.com",
+    #     cc: "izzuddin.muhamad@yahoo.com",
+    #     subject:  "Changes on shipments details",
+    #     date: Time.now)
+    # end
+
+
   end
 end
 
