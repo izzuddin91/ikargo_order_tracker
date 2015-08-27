@@ -6,9 +6,6 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.create_edit_order.subject
   #
-
-
-
   def create_edit_order(order, file)
    @order = order
    CSV.open(file, 'rb+', 
@@ -91,7 +88,7 @@ class UserMailer < ApplicationMailer
     a = file.path
     attachments['report.csv'] = File.read(a)
     # if @order.user_email == "izzuddin@ikargo.com"
-      mail(to: ["izzuddin@ikargo.com", "izzuddin91@me.com", "mu@ikargo.com", "richard@ikargo.com"],
+      mail(to: ["izzuddin@ikargo.com", "aru@ikargo.com", "mu@ikargo.com", "richard@ikargo.com"],
     #     bcc: "mu@ikargo.com",
         # cc: "aru@ikargo.com",
         subject:  "New order has been created",
@@ -120,10 +117,10 @@ class UserMailer < ApplicationMailer
 
   def edit_order(order)
    @order = order
-   mail(to: ["izzuddin@ikargo.com", "izzuddin91@me.com", "mu@ikargo.com", "richard@ikargo.com"],
+   mail(to: ["izzuddin@ikargo.com", "aru@ikargo.com", "mu@ikargo.com", "richard@ikargo.com"],
     subject:  "Changes on shipments details",
     date: Time.now)
-   
+
     #  if @order.user_email == "izzuddin@ikargo.com"
     #   mail(to: "richard@ikargo.com",
     #     bcc: "mu@ikargo.com",
