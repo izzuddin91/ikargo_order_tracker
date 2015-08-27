@@ -172,25 +172,25 @@ class UserMailer < ApplicationMailer
       mail(to: "richard@ikargo.com",
         bcc: "mu@ikargo.com",
         cc: "aru@ikargo.com",
-        subject:  "New order has been created",
+        subject:  "Changes on shipments details",
         date: Time.now)
     elsif @order.user_email == "mu@ikargo.com"
       mail(to:"richard@ikargo.com",
         bcc: "aru@ikargo.com",
         cc: "izzuddin.muhamad@yahoo.com",
-        subject:  "New order has been created",
+        subject:  "Changes on shipments details",
         date: Time.now)
     elsif @order.user_email == "richard@ikargo.com"
       mail(to:"mu@ikargo.com",
         bcc: "aru@ikargo.com",
         cc: "izzuddin.muhamad@yahoo.com",
-        subject:  "New order has been created",
+        subject:  "Changes on shipments details",
         date: Time.now)
     elsif @order.user_email == "aru@ikargo.com"
       mail(to:"mu@ikargo.com",
         bcc: "richard@ikargo.com",
         cc: "izzuddin.muhamad@yahoo.com",
-        subject:  "New order has been created",
+        subject:  "Changes on shipments details",
         date: Time.now)
     end
   end
