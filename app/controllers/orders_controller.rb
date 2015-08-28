@@ -4,15 +4,14 @@ class OrdersController < ApplicationController
 	def index
 		@order = Order.new(delivered: "OTW")
 		@orders = Order.select(:delivered).distinct
-		@address = []
-		@address << Order.pluck(:pick_up_address_1)*","
-		@address << Order.pluck(:pick_up_address_2)*","
-		@address << Order.pluck(:pick_up_address_3)*","
-		@address << Order.pluck(:pick_up_address_4)*","
-		@address << Order.pluck(:drop_point_address_1)*","
-		@address << Order.pluck(:drop_point_address_2)*","
-		@address << Order.pluck(:drop_point_address_3)*","
-		@address << Order.pluck(:drop_point_address_4)*","
+		@address = Order.pluck(:pick_up_address_1, 
+     :pick_up_address_2,
+     :pick_up_address_3,
+     :pick_up_address_4,
+     :drop_point_address_1,
+     :drop_point_address_2,
+     :drop_point_address_3,
+     :drop_point_address_4).flatten.reject{|x| x == ""}.uniq
 		@shipper_address = []
 		@shipper_address << Order.pluck(:shipper_address)*","
 		@driver_info = []
@@ -59,16 +58,15 @@ end
 
 
 def edit
-	@address = []
-	@address << Order.pluck(:pick_up_address_1)*","
-	@address << Order.pluck(:pick_up_address_2)*","
-	@address << Order.pluck(:pick_up_address_3)*","
-	@address << Order.pluck(:pick_up_address_4)*","
-	@address << Order.pluck(:drop_point_address_1)*","
-	@address << Order.pluck(:drop_point_address_2)*","
-	@address << Order.pluck(:drop_point_address_3)*","
-	@address << Order.pluck(:drop_point_address_4)*","
-	@order = Order.find(params[:id])
+  @address = Order.pluck(:pick_up_address_1, 
+   :pick_up_address_2,
+   :pick_up_address_3,
+   :pick_up_address_4,
+   :drop_point_address_1,
+   :drop_point_address_2,
+   :drop_point_address_3,
+   :drop_point_address_4).flatten.reject{|x| x == ""}.uniq
+  @order = Order.find(params[:id])
 end
 
 def show

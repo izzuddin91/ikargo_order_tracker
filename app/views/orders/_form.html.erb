@@ -162,7 +162,7 @@ var projects = $("#order_name").data("autocomplete-source");
         </ul>
       </div>
 
-      <div role="tabpanel" class="tab-pane" id="personal_info">
+      <div role="tabpanel" class="tab-pane" id="personal_info" style="width:850px">
         <br><br>
         <dl class="dl-horizontal">
 
@@ -217,7 +217,7 @@ var projects = $("#order_name").data("autocomplete-source");
     </div>
 
     <div role="tabpanel" class="tab-pane" id="employment_info">
-      <dl class="dl-horizontal">
+      <dl class="dl-horizontal" style="width:850px;">
         <br><br>
         <dt><%= f.label :drop_point_date %></dt>
         <dd><%= f.text_field :drop_point_date, class: "date_of_birth" %></dd>
@@ -308,7 +308,7 @@ var projects = $("#order_name").data("autocomplete-source");
       <dl class="dl-horizontal">
         <br><br>
         <dt><%= f.label :delivery_date %></dt>
-        <dd><%= f.text_field :delivery_date, class: "date_of_birth" %></dd>
+        <dd><%= f.text_field :delivery_date, class: 'form-control' %></dd>
         <br>
 
         <dt><%= f.label :do_request_date %></dt>
@@ -350,7 +350,7 @@ var projects = $("#order_name").data("autocomplete-source");
         <dd><%= f.text_area :payment_name, class: 'form-control' %></dd>
         <br>
         <dt><%= f.label :tel_no %></dt>
-        <dd><%= f.text_field :tel_no, class: 'form-control' %></dd>
+        <dd><%= f.text_area :tel_no, class: 'form-control' %></dd>
         <br>
         <dt><%= f.label :account_no %></dt>
         <dd><%= f.text_area :account_no, class: 'form-control' %></dd>
