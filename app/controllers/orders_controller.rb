@@ -43,16 +43,7 @@ def create
 	@order.update(user_email: a)
 	@records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
   file = Tempfile.new(["a", ".csv"]) #do |csv|
-
-     # csv << ["Application"]
-     #  csv << "\n"
-     #  csv << [@order.inquiry_date]
- 
-    	UserMailer.create_edit_order(@order, file).deliver
-
-    # end
-
-
+    	#UserMailer.create_edit_order(@order, file).deliver
 	redirect_to root_path(@order)
 end
 
@@ -79,7 +70,7 @@ def update
 	@order.update(order_params)
 	@order.update(user_email: a)
 	if current_user.email != "mu@ikargo.com"
-UserMailer.edit_order(@order).deliver
+#UserMailer.edit_order(@order).deliver
 end
 if @order.payment_with_gst != Record.last.rate_history
 	@records = Record.create(order_id: @order.id, changer: @order.user_email.split("@")[0], rate_history: @order.payment_with_gst)
