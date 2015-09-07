@@ -57,7 +57,7 @@ end
 
 @back = []
 @target.each do |x|
-  if x[0..1] == params[:address]
+  if x[0..2].downcase == params[:address].downcase
     @back << x
   end
 end
