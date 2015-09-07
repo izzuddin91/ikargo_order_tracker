@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/autocomplete_address' => "orders#autocomplete_address"
   get 'dashboard' => "orders#dashboard"
   devise_for :users
   root to: "home#index"
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   post "pick_up_date" => 'search#pick_up_date'
 
   get "export" => 'orders#export'
+
+  get "statistic" => 'orders#statistic'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

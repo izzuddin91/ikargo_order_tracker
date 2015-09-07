@@ -4,16 +4,6 @@ class OrdersController < ApplicationController
 	def index
 		@order = Order.new(delivered: "OTW")
 		@orders = Order.select(:delivered).distinct
-		@address = Order.pluck(:pick_up_address_1, 
-     :pick_up_address_2,
-     :pick_up_address_3,
-     :pick_up_address_4,
-     :drop_point_address_1,
-     :drop_point_address_2,
-     :drop_point_address_3,
-     :drop_point_address_4).flatten.reject{|x| x == ""}.uniq
-		@shipper_address = []
-		@shipper_address << Order.pluck(:shipper_address)*","
 		@driver_info = []
 		a = Order.all
 		a.each do |x|
@@ -25,6 +15,35 @@ class OrdersController < ApplicationController
 			@driver_info << c
 		end
 	end
+
+  def autocomplete_address
+    @address = Order.where(["
+      pick_up_address_1 LIKE ? 
+      OR pick_up_address_2 LIKE ?
+      OR pick_up_address_3 LIKE ?
+      OR pick_up_address_4 LIKE ?
+      OR drop_point_address_1 LIKE ? 
+      OR drop_point_address_2 LIKE ?
+      OR drop_point_address_3 LIKE ?
+      OR drop_point_address_4 LIKE ?
+      OR shipper_address LIKE ?
+      ",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%",
+      "#{params[:address]}%"
+      ])
+    @target = []
+    @address.each do |x|
+      @target << x.pick_up_address_1 + x.pick_up_address_2 + x.pick_up_address_3+ x.pick_up_address_4 + x.drop_point_address_1 + x.drop_point_address_2+ x.drop_point_address_3 + x.drop_point_address_4 + x.shipper_address
+    end
+    render json: @target
+  end
 
 	def dashboard
 		@order = Order.all
@@ -98,6 +117,13 @@ redirect_to root_path(@order)
   		format.csv { send_data @order.to_csv }
     format.xls # { send_data @products.to_csv(col_sep: "\t") }
   end
+end
+
+
+def statistic
+  @order = Order.all
+
+
 end
 
 private

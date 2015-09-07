@@ -18,7 +18,8 @@
 <body>
 <script>  
 $(function(){
-$("#order_pick_up_address_1").autocomplete({source: $("#order_pick_up_address_1").data("autocomplete-source") });  
+
+// $("#order_pick_up_address_1").autocomplete({source: $("#order_pick_up_address_1").data("autocomplete-source") });  
 
 $("#order_pick_up_address_2").autocomplete({source: $("#order_pick_up_address_2").data("autocomplete-source") });
 
@@ -37,6 +38,148 @@ $("#order_drop_point_address_4").autocomplete({source: $("#order_drop_point_addr
 $("#order_shipper_address").autocomplete({source: $("#order_shipper_address").data("autocomplete-source") });  
 });
 
+</script>
+
+<script>
+$(function() {
+  $( "#order_pick_up_address_1" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_1").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_2" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_2").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_3" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_3").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_4" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_4").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+
+  $( "#order_drop_point_address_1" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_1").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_2" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_2").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_3" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_3").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_4" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_4").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_shipper_address" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_shipper_address").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      minLength: 2,
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+
+});
 </script>
 
 <script>
@@ -136,7 +279,7 @@ var projects = $("#order_name").data("autocomplete-source");
             <dd><%= f.text_field :shipper, class: "form-control" %></dd>
             <br>
             <dt><%= f.label :shipper_address  %></dt>
-            <dd><%= f.text_area :shipper_address, class: "form-control", data: { autocomplete_source: @shipper_address} %></dd>
+            <dd><%= f.text_area :shipper_address, class: "form-control" %></dd>
             <br>
             <dt><%= f.label :transporter %></dt>
             <dd><%= f.text_field :transporter, class: 'form-control' %></dd>
@@ -170,7 +313,7 @@ var projects = $("#order_name").data("autocomplete-source");
   <h3>Pick Up Address 1</h3>
 <div>
           <dt><%= f.label(:pick_up_address_1, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;", data: { autocomplete_source: @address} %></dd>
+          <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;" %></dd>
           <br>
           <dt><%= f.label(:pick_up_pic_no_1, "Name & Phone no") %></dt>
           <dd><%= f.text_field :pick_up_pic_no_1, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -179,7 +322,7 @@ var projects = $("#order_name").data("autocomplete-source");
 <h3>Pick Up Address 2</h3>
 <div>
           <dt><%= f.label(:pick_up_address_2, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_2, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
+          <dd><%= f.text_area :pick_up_address_2, class: 'form-control' %></dd>
           <br>
           <dt><%= f.label(:pick_up_pic_no_2, "Name & Phone no") %></dt>
           <dd><%= f.text_field :pick_up_pic_no_2, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -189,7 +332,7 @@ var projects = $("#order_name").data("autocomplete-source");
 <div>
 
          <dt><%= f.label(:pick_up_address_3, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_3, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
+          <dd><%= f.text_area :pick_up_address_3, class: 'form-control' %></dd>
           <br>
           <dt><%= f.label(:pick_up_pic_no_3,  "Name & Phone no") %></dt>
           <dd><%= f.text_field :pick_up_pic_no_3, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -198,7 +341,7 @@ var projects = $("#order_name").data("autocomplete-source");
 <h3>Pick Up Address 4</h3>
 <div>
          <dt><%= f.label(:pick_up_address_4, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_4, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
+          <dd><%= f.text_area :pick_up_address_4, class: 'form-control' %></dd>
           <br>
           <dt><%= f.label(:pick_up_pic_no_4, "Name & Phone") %></dt>
           <dd><%= f.text_field :pick_up_pic_no_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -227,7 +370,7 @@ var projects = $("#order_name").data("autocomplete-source");
 <h3>Drop Point Address 1</h3>
 <div>
         <dt><%= f.label(:drop_point_address_1, "Address") %></dt>
-        <dd><%= f.text_area :drop_point_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;", data: { autocomplete_source: @address}  %></dd>
+        <dd><%= f.text_area :drop_point_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;"  %></dd>
         <br>
          <dt><%= f.label(:drop_point_pic_no_1, "Name & Phone no") %></dt>
         <dd><%= f.text_field :drop_point_pic_no_1, class: "form-control", style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -236,7 +379,7 @@ var projects = $("#order_name").data("autocomplete-source");
 <h3>Drop Point Address 2</h3>
 <div>
         <dt><%= f.label(:drop_point_address_2, "Address") %></dt>
-        <dd><%= f.text_area :drop_point_address_2, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
+        <dd><%= f.text_area :drop_point_address_2, class: 'form-control'  %></dd>
         <br>
          <dt><%= f.label(:drop_point_pic_no_2, "Name & Phone no")%></dt>
         <dd><%= f.text_field :drop_point_pic_no_2, class: "form-control", style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -246,7 +389,7 @@ var projects = $("#order_name").data("autocomplete-source");
 <h3>Drop Point Address 3</h3>
 <div>
         <dt><%= f.label(:drop_point_address_3, "Address") %></dt>
-        <dd><%= f.text_area :drop_point_address_3, class: 'form-control', data: { autocomplete_source: @address}  %></dd>
+        <dd><%= f.text_area :drop_point_address_3, class: 'form-control' %></dd>
         <br>
          <dt><%= f.label(:drop_point_pic_no_3, "Name & Phone no") %></dt>
         <dd><%= f.text_field :drop_point_pic_no_3, class: "form-control", style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
@@ -256,7 +399,7 @@ var projects = $("#order_name").data("autocomplete-source");
 
 <div>
         <dt><%= f.label(:drop_point_address_4, "Address") %></dt>
-        <dd><%= f.text_area :drop_point_address_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;", data: { autocomplete_source: @address}  %></dd>
+        <dd><%= f.text_area :drop_point_address_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
         <br>
          <dt><%= f.label(:drop_point_pic_no_4, "Name & Phone no") %></dt>
         <dd><%= f.text_field :drop_point_pic_no_4, class: "form-control" %></dd>
@@ -421,6 +564,7 @@ var projects = $("#order_name").data("autocomplete-source");
         <br>
         <dt><%= f.label :invoice %></dt>
         <dd><%= f.text_field :invoice, class: 'form-control' %></dd>
+        <%= image_tag("ajax-loader.gif")%>
         <br>
         
       </dl>
