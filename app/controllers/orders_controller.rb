@@ -55,9 +55,10 @@ order.each do |x|
   @target.flatten.reject{|x| x == ""}.uniq 
 end
 
+number = params[:address].length - 1
 @back = []
 @target.each do |x|
-  if x[0..2].downcase == params[:address].downcase
+  if x[0..(number)].downcase == params[:address].downcase
     @back << x
   end
 end
