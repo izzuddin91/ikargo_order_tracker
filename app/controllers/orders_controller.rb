@@ -18,41 +18,50 @@ class OrdersController < ApplicationController
 	end
 
   def autocomplete_address
-    @address = Order.where(["
-      pick_up_address_1 LIKE ? 
-      OR pick_up_address_2 LIKE ?
-      OR pick_up_address_3 LIKE ?
-      OR pick_up_address_4 LIKE ?
-      OR shipper_address LIKE ?
-      OR drop_point_address_1 LIKE ? 
-      OR drop_point_address_2 LIKE ?
-      OR drop_point_address_3 LIKE ?
-      OR drop_point_address_4 LIKE ?
-      ",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%",
-      "#{params[:address]}%"
-       ])
-    @target = []
-    @address.each do |x|
-      @target << x.pick_up_address_1 
-      @target << x.pick_up_address_2 
-      @target << x.pick_up_address_3  
-      @target << x.pick_up_address_4  
-      @target << x.drop_point_address_1  
-      @target <<  x.drop_point_address_2 
-      @target << x.drop_point_address_3 
-      @target << x.drop_point_address_4 
-      @target <<  x.shipper_address   
-      @target.flatten.reject{|x| x == ""}.uniq 
-   end
-    render json: @target
+    # @address = Order.where(["
+    #   pick_up_address_1 LIKE ? 
+    #   OR pick_up_address_2 LIKE ?
+    #   OR pick_up_address_3 LIKE ?
+    #   OR pick_up_address_4 LIKE ?
+    #   OR shipper_address LIKE ?
+    #   OR drop_point_address_1 LIKE ? 
+    #   OR drop_point_address_2 LIKE ?
+    #   OR drop_point_address_3 LIKE ?
+    #   OR drop_point_address_4 LIKE ?
+    #   ",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%",
+    #   "#{params[:address]}%"
+    #    ])
+
+@target = []
+order = Order.all
+order.each do |x|
+  @target << x.pick_up_address_1 
+  @target << x.pick_up_address_2 
+  @target << x.pick_up_address_3  
+  @target << x.pick_up_address_4  
+  @target << x.drop_point_address_1  
+  @target <<  x.drop_point_address_2 
+  @target << x.drop_point_address_3 
+  @target << x.drop_point_address_4 
+  @target <<  x.shipper_address   
+  @target.flatten.reject{|x| x == ""}.uniq 
+end
+
+@back = []
+@target.each do |x|
+  if x[0..1] == params[:address]
+    @back << x
+  end
+end
+    render json: @back
   end
 
 	def dashboard
