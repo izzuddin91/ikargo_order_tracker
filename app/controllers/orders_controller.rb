@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 	def index
 		@order = Order.new(delivered: "OTW")
 		@orders = Order.select(:delivered).distinct
+
 		@driver_info = []
 		a = Order.all
 		a.each do |x|
@@ -22,11 +23,11 @@ class OrdersController < ApplicationController
       OR pick_up_address_2 LIKE ?
       OR pick_up_address_3 LIKE ?
       OR pick_up_address_4 LIKE ?
+      OR shipper_address LIKE ?
       OR drop_point_address_1 LIKE ? 
       OR drop_point_address_2 LIKE ?
       OR drop_point_address_3 LIKE ?
       OR drop_point_address_4 LIKE ?
-      OR shipper_address LIKE ?
       ",
       "#{params[:address]}%",
       "#{params[:address]}%",
@@ -37,11 +38,20 @@ class OrdersController < ApplicationController
       "#{params[:address]}%",
       "#{params[:address]}%",
       "#{params[:address]}%"
-      ])
+       ])
     @target = []
     @address.each do |x|
-      @target << x.pick_up_address_1 + x.pick_up_address_2 + x.pick_up_address_3+ x.pick_up_address_4 + x.drop_point_address_1 + x.drop_point_address_2+ x.drop_point_address_3 + x.drop_point_address_4 + x.shipper_address
-    end
+      @target << x.pick_up_address_1 
+      @target << x.pick_up_address_2 
+      @target << x.pick_up_address_3  
+      @target << x.pick_up_address_4  
+      @target << x.drop_point_address_1  
+      @target <<  x.drop_point_address_2 
+      @target << x.drop_point_address_3 
+      @target << x.drop_point_address_4 
+      @target <<  x.shipper_address   
+      @target.flatten.reject{|x| x == ""}.uniq 
+   end
     render json: @target
   end
 
