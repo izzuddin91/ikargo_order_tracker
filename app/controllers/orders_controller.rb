@@ -31,7 +31,10 @@ order.each do |x|
   @target << x.drop_point_address_4 
   @target <<  x.shipper_address   
   @target.flatten.reject{|x| x == ""}.uniq!
+  #reject any duplicates
+  @target & @target
 end
+
 number = params[:address].length - 1
 @back = []
 @target.each do |x|
