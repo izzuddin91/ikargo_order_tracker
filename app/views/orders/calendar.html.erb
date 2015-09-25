@@ -1,0 +1,22 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+<h1>Calendar</h1>
+<h2 id="month"><%= link_to "<", date: @date.prev_month %>
+<%= @date.strftime("%B %Y")%>
+<%= link_to ">", date: @date.next_month %></h2>
+<div id="articles">
+<%= calendar @date do |date|%>
+<%= date.day %>
+
+<%if @orders_by_date[date] %>
+<ul>
+  <% @orders_by_date[date].each do |order|%>
+  <li><%= order.transporter%>(<%= link_to order.remarks, order %>)</li>
+<%end%>
+</ul>
+
+<%end%>
+
+<%end%>
+</div>
+ </div>

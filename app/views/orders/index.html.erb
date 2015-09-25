@@ -1,4 +1,8 @@
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Accordion - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
@@ -9,4 +13,261 @@
     });
   });
   </script>
+
+  <script>
+  $(document).ready(function() {
+    $( ".date_of_birth" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      dateFormat: 'yy-mm-dd'
+    });
+  });
+  </script>
+
+</head>
+<body>
+<script>  
+$(function(){
+
+// $("#order_pick_up_address_1").autocomplete({source: $("#order_pick_up_address_1").data("autocomplete-source") });  
+
+$("#order_pick_up_address_2").autocomplete({source: $("#order_pick_up_address_2").data("autocomplete-source") });
+
+$("#order_pick_up_address_3").autocomplete({source: $("#order_pick_up_address_3").data("autocomplete-source") });
+
+$("#order_pick_up_address_4").autocomplete({source: $("#order_pick_up_address_4").data("autocomplete-source") });
+
+$("#order_drop_point_address_1").autocomplete({source: $("#order_drop_point_address_1").data("autocomplete-source") });  
+
+$("#order_drop_point_address_2").autocomplete({source: $("#order_drop_point_address_2").data("autocomplete-source") });
+
+$("#order_drop_point_address_3").autocomplete({source: $("#order_drop_point_address_3").data("autocomplete-source") });
+
+$("#order_drop_point_address_4").autocomplete({source: $("#order_drop_point_address_4").data("autocomplete-source") });
+
+$("#order_shipper_address").autocomplete({source: $("#order_shipper_address").data("autocomplete-source") });  
+});
+
+</script>
+
+<script>
+$(function() {
+  $( "#order_pick_up_address_1" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_1").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_2" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_2").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_3" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_3").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_4" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_4").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+
+  $( "#order_drop_point_address_1" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_1").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_2" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_2").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_3" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_3").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_4" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_4").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_shipper_address" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_shipper_address").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+
+});
+</script>
+
+<script>
+  $(function() {
+    //var projects = $("#order_name").data("autocomplete-source");
+var projects = $("#order_name").data("autocomplete-source");
+
+    function lightwell(request, response) {
+        function hasMatch(s) {
+            return s.toLowerCase().indexOf(request.term.toLowerCase())!==-1;
+        }
+        var i, l, obj, matches = [];
+
+        if (request.term==="") {
+        response([]);
+            return;
+        }
+        for  (i = 0, l = projects.length; i<l; i++) {
+            obj = projects[i];
+            if (hasMatch(obj.name) || hasMatch(obj.desc)) {
+                matches.push(obj);
+            }
+        }
+        response(matches);
+    }
+    
+    $( "#order_name" ).autocomplete({
+      
+        minLength: 0,
+        source: lightwell,
+        focus: function( event, ui ) {
+            $( "#project" ).val( ui.item.name );
+            return false;
+        },
+        select: function( event, ui ) {
+            $( "#order_name" ).val( ui.item.name );
+            $( "#project-id" ).html( ui.item.value ); // is this needed?
+            $( "#project-title" ).html( ui.item.name );
+            $( "#project-description" ).html( ui.item.desc );
+            $( "#project-other" ).html( ui.item.other );
+            
+            return false;
+        }
+    })
+    
+    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+        return $( "<li>" )
+            .append( "<a>" + item.name + 
+                "<br><span style='font-size: 80%;'>Order no.: " + item.value + "</span>" +
+                "<br><span style='font-size: 70%;'>Route: " + item.desc + "</span>" +
+                "<br><span style='font-size: 60%;'>Comment: " + item.other + "</span></a>" )
+            .appendTo( ul );
+    };
+});
+</script>
+
+<script>
+  $(function() {
+    var count = 1;
+    function setColor(btn, color) {
+        var property = document.getElementById(btn);
+        if (count == 0) {
+            property.style.backgroundColor = "#FFFFFF"
+            count = 1;        
+        }
+        else {
+            property.style.backgroundColor = "#7FFF00"
+            count = 0;
+        }
+    }
+    });
+</script>
+
+<style type="text/css">
+#project-description {
+    margin: 0;
+    padding: 0;
+}
+
+</style>
  <%= render 'form' %>

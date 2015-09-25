@@ -191,6 +191,13 @@ def show_details
   render json: @callback
 end
 
+def calendar
+  order = Order.all
+  @orders_by_date = order.group_by(&:datetime)
+  @date = params[:date] ? Date.parse(params[:date]) : Date.today
+  
+end
+
 private
 
 def order_params
