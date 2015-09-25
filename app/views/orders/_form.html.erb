@@ -1,374 +1,47 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <div class="col-md-6">
+    <%= form_for @order  do |f| %>
+    <h3> BASIC INFO</h3>
+    <dt><%= f.label :inquiry_date %></dt>
+    <dd><%= f.text_field :inquiry_date, class: 'date_of_birth' %></dd>
+    <br>
+    <dt><%= f.label :no %></dt>
+    <dd><%= f.text_field :no, class: 'form-control' %></dd>
+    <br>
+    <dt><%= f.label :shipper  %></dt>
+    <dd><%= f.text_field :shipper, class: "form-control" %></dd>
+    <br>
+    <dt><%= f.label :shipper_address  %></dt>
+    <dd><%= f.text_area :shipper_address, class: "form-control" %></dd>
+    <br>
+    <dt><%= f.label :transporter %></dt>
+    <dd><%= f.text_field :transporter, class: 'form-control' %></dd>
+    <br>
+    <dt><%= f.label :truck_size %></dt>
+    <dd><%= f.text_field :truck_size, class: 'form-control' %></dd>
+    <br>
+    <dt><%= f.label :route %></dt>
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>jQuery UI Accordion - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( ".accordion" ).accordion({
-        heightStyle: "content"
-    });
-  });
-  </script>
-</head>
-<body>
-<script>  
-$(function(){
-
-// $("#order_pick_up_address_1").autocomplete({source: $("#order_pick_up_address_1").data("autocomplete-source") });  
-
-$("#order_pick_up_address_2").autocomplete({source: $("#order_pick_up_address_2").data("autocomplete-source") });
-
-$("#order_pick_up_address_3").autocomplete({source: $("#order_pick_up_address_3").data("autocomplete-source") });
-
-$("#order_pick_up_address_4").autocomplete({source: $("#order_pick_up_address_4").data("autocomplete-source") });
-
-$("#order_drop_point_address_1").autocomplete({source: $("#order_drop_point_address_1").data("autocomplete-source") });  
-
-$("#order_drop_point_address_2").autocomplete({source: $("#order_drop_point_address_2").data("autocomplete-source") });
-
-$("#order_drop_point_address_3").autocomplete({source: $("#order_drop_point_address_3").data("autocomplete-source") });
-
-$("#order_drop_point_address_4").autocomplete({source: $("#order_drop_point_address_4").data("autocomplete-source") });
-
-$("#order_shipper_address").autocomplete({source: $("#order_shipper_address").data("autocomplete-source") });  
-});
-
-</script>
-
-<script>
-$(function() {
-  $( "#order_pick_up_address_1" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_1").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_pick_up_address_2" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_2").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_pick_up_address_3" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_3").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_pick_up_address_4" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_4").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-
-  $( "#order_drop_point_address_1" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_1").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_drop_point_address_2" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_2").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_drop_point_address_3" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_3").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_drop_point_address_4" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_4").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_shipper_address" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_shipper_address").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-
-});
-</script>
-
-<script>
-  $(function() {
-    //var projects = $("#order_name").data("autocomplete-source");
-var projects = $("#order_name").data("autocomplete-source");
-
-    function lightwell(request, response) {
-        function hasMatch(s) {
-            return s.toLowerCase().indexOf(request.term.toLowerCase())!==-1;
-        }
-        var i, l, obj, matches = [];
-
-        if (request.term==="") {
-        response([]);
-            return;
-        }
-        for  (i = 0, l = projects.length; i<l; i++) {
-            obj = projects[i];
-            if (hasMatch(obj.name) || hasMatch(obj.desc)) {
-                matches.push(obj);
-            }
-        }
-        response(matches);
-    }
-    
-    $( "#order_name" ).autocomplete({
-      
-        minLength: 0,
-        source: lightwell,
-        focus: function( event, ui ) {
-            $( "#project" ).val( ui.item.name );
-            return false;
-        },
-        select: function( event, ui ) {
-            $( "#order_name" ).val( ui.item.name );
-            $( "#project-id" ).html( ui.item.value ); // is this needed?
-            $( "#project-title" ).html( ui.item.name );
-            $( "#project-description" ).html( ui.item.desc );
-            $( "#project-other" ).html( ui.item.other );
-            
-            return false;
-        }
-    })
-    
-    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-        return $( "<li>" )
-            .append( "<a>" + item.name + 
-                "<br><span style='font-size: 80%;'>Order no.: " + item.value + "</span>" +
-                "<br><span style='font-size: 70%;'>Route: " + item.desc + "</span>" +
-                "<br><span style='font-size: 60%;'>Comment: " + item.other + "</span></a>" )
-            .appendTo( ul );
-    };
-});
-</script>
-
-<script>
-  $(function() {
-    var count = 1;
-    function setColor(btn, color) {
-        var property = document.getElementById(btn);
-        if (count == 0) {
-            property.style.backgroundColor = "#FFFFFF"
-            count = 1;        
-        }
-        else {
-            property.style.backgroundColor = "#7FFF00"
-            count = 0;
-        }
-    }
-    });
-</script>
-
-<style type="text/css">
-#project-description {
-    margin: 0;
-    padding: 0;
-}
-
-</style>
-
-
-<%= form_for @order  do |f| %>
-  <div class="col-md-4 col-md-offset-1">
-    <div>
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="order">
-          <br><br>
-          <dl class="dl-horizontal">
-            <dt><%= f.label :inquiry_date %></dt>
-            <dd><%= f.text_field :inquiry_date, class: 'date_of_birth' %></dd>
-            <br>
-            <dt><%= f.label :no %></dt>
-            <dd><%= f.text_field :no, class: 'form-control' %></dd>
-            <br>
-            <dt><%= f.label :shipper  %></dt>
-            <dd><%= f.text_field :shipper, class: "form-control" %></dd>
-            <br>
-            <dt><%= f.label :shipper_address  %></dt>
-            <dd><%= f.text_area :shipper_address, class: "form-control" %></dd>
-            <br>
-            <dt><%= f.label :transporter %></dt>
-            <dd><%= f.text_field :transporter, class: 'form-control' %></dd>
-            <br>
-            <dt><%= f.label :truck_size %></dt>
-            <dd><%= f.text_field :truck_size, class: 'form-control' %></dd>
-            <br>
-
-            <dt><%= f.label :route %></dt>
-
-            <dd><%= f.text_field :remarks, class: 'form-control' %></dd>
-            <br>
-            <%if current_user.email != "mu@ikargo.com"%>
-           <dt><%= f.label(:payment_advance, "Rate" )  %></dt>
-        <dd><%= f.text_field :payment_with_gst, class: 'form-control' %></dd>
-            <%end%>
-            <br>
-            <dt><%= f.label :notes %></dt>
-            <dd><%= f.text_area :notes, class: 'form-control' %></dd>
-            <br>
-
-          </dl>
-        </ul>
-      </div>
-
-      <div role="tabpanel" class="tab-pane" id="personal_info" style="width:850px">
-        <br><br>
-        <dl class="dl-horizontal">
-
-<div class= "accordion">
-  <h3>Pick Up Address 1</h3>
-<div>
-          <dt><%= f.label(:pick_up_address_1, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;" %></dd>
-          <br>
-          <dt><%= f.label(:pick_up_pic_no_1, "Name & Phone no") %></dt>
-          <dd><%= f.text_field :pick_up_pic_no_1, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
-          <br>
-</div>
-<h3>Pick Up Address 2</h3>
-<div>
-          <dt><%= f.label(:pick_up_address_2, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_2, class: 'form-control' %></dd>
-          <br>
-          <dt><%= f.label(:pick_up_pic_no_2, "Name & Phone no") %></dt>
-          <dd><%= f.text_field :pick_up_pic_no_2, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
-          <br>
-</div>
-<h3>Pick Up Address 3</h3>
-<div>
-
-         <dt><%= f.label(:pick_up_address_3, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_3, class: 'form-control' %></dd>
-          <br>
-          <dt><%= f.label(:pick_up_pic_no_3,  "Name & Phone no") %></dt>
-          <dd><%= f.text_field :pick_up_pic_no_3, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
-          <br>
-</div>
-<h3>Pick Up Address 4</h3>
-<div>
-         <dt><%= f.label(:pick_up_address_4, "Address") %></dt>
-          <dd><%= f.text_area :pick_up_address_4, class: 'form-control' %></dd>
-          <br>
-          <dt><%= f.label(:pick_up_pic_no_4, "Name & Phone") %></dt>
-          <dd><%= f.text_field :pick_up_pic_no_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
-          <br>
-</div>
-</div>
-
-<br>
-          <dt><%= f.label :goods_description %></dt>
-          <dd><%= f.text_field :goods_description, class: 'form-control' %></dd>
-          <br>
-          <dt><%= f.label(:datetime, "Pick up date")%></dt>
-          <dd><%= f.text_field :datetime, class: "date_of_birth" %></dd>
-          
-      </ul>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="employment_info">
-      <dl class="dl-horizontal" style="width:850px;">
-        <br><br>
-        <dt><%= f.label :drop_point_date %></dt>
+    <dd><%= f.text_field :remarks, class: 'form-control' %></dd>
+    <br>
+    <%if current_user.email != "mu@ikargo.com"%>
+    <dt><%= f.label(:payment_advance, "Rate" )  %></dt>
+    <dd><%= f.text_field :payment_with_gst, class: 'form-control' %></dd>
+    <%end%>
+    <br>
+    <dt><%= f.label :notes %></dt>
+    <dd><%= f.text_area :notes, class: 'form-control' %></dd>
+    <br>
+<h3>ADDRESS</h3>
+  <dt><%= f.label :drop_point_date %></dt>
         <dd><%= f.text_field :drop_point_date, class: "date_of_birth" %></dd>
         <br>
 
 <div class= "accordion" >
 <h3>Drop Point Address 1</h3>
 <div>
+
+
         <dt><%= f.label(:drop_point_address_1, "Address") %></dt>
         <dd><%= f.text_area :drop_point_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;"  %></dd>
         <br>
@@ -411,10 +84,7 @@ var projects = $("#order_name").data("autocomplete-source");
         <dd><%= f.text_field :special_request, class: 'form-control' %></dd>
         <br>
       </dl>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="others_info">
-      <dl class="dl-horizontal">
+<h3>DRIVER</h3>
         <br><br>
         <dt><%= f.label :trucks_capacity %></dt>
         <dd><%= f.text_field :trucks_capacity, class: 'form-control' %></dd>
@@ -433,23 +103,9 @@ var projects = $("#order_name").data("autocomplete-source");
         <br>
         <dt><%= f.label :driver_remarks %></dt>
         <dd><%= f.text_area :driver_remarks, class: 'form-control' %></dd>
-<div id="track_record" style="
-    margin-left: 180px;
-    margin-top: 30px;
-">
-        <p  id="project-id" ></p>
-<p id="project-title"></p><p id="project-description"></p><p id="project-other">
 
-</div>
-      </dl>
-
-
-
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="system_info">
-      <dl class="dl-horizontal">
-        <br><br>
+        <h3>DELIVERY FLOW</h3>
+<br>
         <dt><%= f.label :delivery_date %></dt>
         <dd><%= f.text_field :delivery_date, class: 'form-control' %></dd>
         <br>
@@ -480,15 +136,11 @@ var projects = $("#order_name").data("autocomplete-source");
             <option value="Overweight">Overweight</option>
             <option value="DONE!">DONE!</option>
           </select>
-
         </dd>
-        <br>
-      </dl>
-    </div>
+  </div>
+  <div class="col-md-6">
 
-    <div role="tabpanel" class="tab-pane" id="payment_info">
-      <dl class="dl-horizontal">
-        <br><br>
+<h3>PAYMENT</h3>
         <dt><%= f.label :payment_name %></dt>
         <dd><%= f.text_area :payment_name, class: 'form-control' %></dd>
         <br>
@@ -529,11 +181,7 @@ var projects = $("#order_name").data("autocomplete-source");
         <dt><%= f.label(:payment_balance, "Balance(AUTO)", style: "color:red;")%></dt>
         <dd><%= f.text_field :payment_balance, class: 'form-control' %></dd>
 
-      </dl>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="billing_info">
-      <dl class="dl-horizontal">
-        <br><br>
+        <h3>Billing</h3>
         <dt><%= f.label :name %></dt>
         <dd><%= f.text_area :billing_name, class: 'form-control' %></dd>
         <br>
@@ -564,17 +212,8 @@ var projects = $("#order_name").data("autocomplete-source");
         <br>
         <dt><%= f.label :invoice %></dt>
         <dd><%= f.text_field :invoice, class: 'form-control' %></dd>
-        <%= image_tag("ajax-loader.gif")%>
-        <br>
-        
-      </dl>
+        <br><br>
+      <dd><%= f.submit "Save", class: "btn btn-primary" %>   <%= link_to "Back" , dashboard_path, class: "btn btn-primary", :"data-no-turbolink" => true  %></dd>
     </div>
-    <dd><%= f.submit "Save", class: "btn btn-primary" %>   <%= link_to "Back" , dashboard_path, class: "btn btn-primary", :"data-no-turbolink" => true  %></dd>
-  </dl>
-</div>
-</div>
-</div>
-</div>
-<% end %>
-</body>
-</html>
+  </div>
+  <%end%>

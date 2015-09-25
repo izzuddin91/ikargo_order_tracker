@@ -35,6 +35,7 @@ order.each do |x|
   @target & @target
 end
 
+
 number = params[:address].length - 1
 @back = []
 @target.each do |x|
@@ -46,7 +47,8 @@ end
   end
 
 	def dashboard
-		@order = Order.all
+		@order = Order.paginate(:page => params[:page], :per_page => 20)
+
 		respond_to do |format|
 			format.html
 			format.csv { send_data @order.to_csv }
@@ -122,8 +124,71 @@ end
 
 def statistic
   @order = Order.all
+end
 
 
+def show_details
+  @callback = []
+  response = Order.find_by(id: params[:response])
+  @callback << response.inquiry_date
+  @callback << response.no
+  @callback << response.shipper
+  @callback << response.shipper_address
+  @callback << response.transporter
+  @callback << response.truck_size
+  @callback << response.details
+  @callback << response.remarks
+  @callback << response.notes
+  @callback << response.datetime
+  @callback << response.goods_description
+  @callback << response.pick_up_address_1
+  @callback << response.pick_up_pic_no_1
+  @callback << response.pick_up_address_2
+  @callback << response.pick_up_pic_no_2
+  @callback << response.pick_up_address_3
+  @callback << response.pick_up_pic_no_3
+  @callback << response.pick_up_address_4
+  @callback << response.pick_up_pic_no_4
+  @callback << response.special_request
+  @callback << response.drop_point_address_1
+  @callback << response.drop_point_pic_no_1
+  @callback << response.drop_point_address_2
+  @callback << response.drop_point_pic_no_2
+  @callback << response.drop_point_address_3
+  @callback << response.drop_point_pic_no_3
+  @callback << response.drop_point_address_4
+  @callback << response.drop_point_pic_no_4
+  @callback << response.trucks_capacity 
+  @callback << response.truck_reg_no 
+  @callback << response.name
+  @callback << response.ic 
+  @callback << response.phone_no
+  @callback << response.delivery_date
+  @callback << response.do_request_date
+  @callback << response.do_collection_date
+  @callback << response.do_number
+  @callback << response.total_tonne
+  @callback << response.payment_name
+  @callback << response.tel_no
+  @callback << response.account_no
+  @callback << response.rate
+  @callback << response.payment_rate
+  @callback << response.gst_total_value
+  @callback << response.payment_with_gst
+  @callback << response.payment_advance
+  @callback << response.payment_paid
+  @callback << response.payment_commision
+  @callback << response.payment_balance
+  @callback << response.billing_name
+  @callback << response.billing_rate
+  @callback << response.billing_amount
+  @callback << response.gst_billing_total_value
+  @callback << response.billing_with_gst
+  @callback << response.billing_received
+  @callback << response.billing_balance
+  @callback << response.invoice_date
+  @callback << response.invoice
+  render json: @callback
 end
 
 private
