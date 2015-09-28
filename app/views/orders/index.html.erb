@@ -6,262 +6,177 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( ".accordion" ).accordion({
-        heightStyle: "content"
-    });
-  });
-  </script>
 
-  <script>
-  $(document).ready(function() {
-    $( ".date_of_birth" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      dateFormat: 'yy-mm-dd'
-    });
-  });
-  </script>
+<script>
 
-</head>
-<body>
-<script>  
-$(function(){
 
-// $("#order_pick_up_address_1").autocomplete({source: $("#order_pick_up_address_1").data("autocomplete-source") });  
-
-$("#order_pick_up_address_2").autocomplete({source: $("#order_pick_up_address_2").data("autocomplete-source") });
-
-$("#order_pick_up_address_3").autocomplete({source: $("#order_pick_up_address_3").data("autocomplete-source") });
-
-$("#order_pick_up_address_4").autocomplete({source: $("#order_pick_up_address_4").data("autocomplete-source") });
-
-$("#order_drop_point_address_1").autocomplete({source: $("#order_drop_point_address_1").data("autocomplete-source") });  
-
-$("#order_drop_point_address_2").autocomplete({source: $("#order_drop_point_address_2").data("autocomplete-source") });
-
-$("#order_drop_point_address_3").autocomplete({source: $("#order_drop_point_address_3").data("autocomplete-source") });
-
-$("#order_drop_point_address_4").autocomplete({source: $("#order_drop_point_address_4").data("autocomplete-source") });
-
-$("#order_shipper_address").autocomplete({source: $("#order_shipper_address").data("autocomplete-source") });  
+$(document).on('ready page:load', function(){
+  $('.action-button button').click(function() {
+    $('.action-button button.active').removeClass('active');
+    $(this).addClass('active');
+  })
 });
-
 </script>
 
 <script>
 $(function() {
-  $( "#order_pick_up_address_1" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_1").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
+  $( ".date_of_birth" ).datepicker({
+    changeMonth: true,
+    changeYear: true,
+          dateFormat: 'dd-mm-yy'
+  });
+
+
+   $( ".accordion" ).accordion({
+        heightStyle: "content"
     });
-  },
+
+  //calculation for payment 
+$("#order_payment_rate, #order_payment_advance, #order_payment_paid, #order_payment_commision, #order_payment_with_gst").blur(function(){
+  var rate = Number($("#order_payment_rate").val());
+var advance = Number($("#order_payment_advance").val());
+var paid = Number($("#order_payment_paid").val());
+var commision = Number($("#order_payment_commision").val());
+var total = Number($("#order_payment_with_gst").val());
+var balance = total - advance - paid - commision ;
+$("#order_payment_balance").val(balance);
+
+//round up rumber for gst payment
+$("#order_gst_total_value").val(roundNumber(Number($("#order_gst_total_value").val()), 2));
 });
 
-  $( "#order_pick_up_address_2" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_2").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
+//calculation for billing
+$("#order_billing_amount, #order_billing_received").blur(function(){
+  var amount = Number($("#order_billing_with_gst").val());
+var received = Number($("#order_billing_received").val());
+var balance = amount - received ;
+$("#order_billing_balance").val(balance);
+
+$("#order_gst_billing_total_value").val(roundNumber(Number($("#order_gst_billing_total_value").val()), 2));
+
 });
 
-  $( "#order_pick_up_address_3" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_3").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
+// calculate gst for payment
+$('#order_payment_calculate_gst').on('change', function () {
+      if ($(this).is(':checked')) {
+        a = $("#order_payment_rate").val();
+        b = $("#order_payment_advance").val();
+          $('#order_gst_total_value').val(a*0.06);
+          $('#order_payment_balance').val(a*1.06);
+          $("#order_payment_with_gst").val(a*1.06);
+      } else {
+          currentVal = $('#order_payment_rate').val();
+          currentVal = currentVal.replace($('.qwer').val(), '');
+          $('#order_payment_rate').val(a);
+          $('#order_gst_total_value').val(b);
+          $('#order_payment_balance').val(a);
+          $("#order_payment_with_gst").val(a);
       }
-    });
-  },
-});
+  });
 
-  $( "#order_pick_up_address_4" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_pick_up_address_4").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
+// reverse calculate gst for payment
+$('#order_payment_reverse_calculate_gst').on('change', function () {
+      if ($(this).is(':checked')) {
+        c = $("#order_payment_with_gst").val();
+        var d = c/1.06
+         var reverse = c - d ;
+         reverse = c - d;
+         $('#order_payment_rate').val(d);
+          $('#order_gst_total_value').val(reverse);
+          $('#order_payment_balance').val(d + reverse );
+          var e = Number($("#order_payment_rate").val());
+          $("#order_payment_with_gst").val(d + reverse);
+      } else {
+          $('#order_payment_rate').val(c);
+          $('#order_gst_total_value').val(reverse);
+             a = Number($("#order_payment_balance").val());
+            b = a/1.06
+          $('#order_payment_balance').val(b);
+          $("order_payment_with_gst").val(b);
       }
-    });
-  },
-});
+  });
 
 
-  $( "#order_drop_point_address_1" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_1").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
+//calculate gst for billing
+$('#order_billing_calculate_gst').on('change', function () {
+      if ($(this).is(':checked')) {
+        a = $("#order_billing_amount").val();
+        b = $("#order_gst_billing_total_value").val();
+          $('#order_gst_billing_total_value').val(a*0.06);
+          $('#order_billing_balance').val(a*1.06);
+          $("#order_billing_with_gst").val(a*1.06);
+      } else {
+          $("#order_billing_amount").val(a);
+          $('#order_gst_billing_total_value').val(b);
+          $("#order_billing_with_gst").val(a);
+          $("#order_billing_balance").val(a);
       
-      success: function( data ) {
-        response( data );
       }
-    });
-  },
-});
+  });
 
-  $( "#order_drop_point_address_2" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_2").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
+
+//reverse calculate gst for billing
+$('#order_billing_reverse_calculate_gst').on('change', function () {
+      if ($(this).is(':checked')) {
+        c = $("#order_billing_with_gst").val();
+        var d = c/1.06
+         var reverse = c - d ;
+         reverse = c - d;
+         $('#order_billing_amount').val(d);
+          $('#order_gst_billing_total_value').val(reverse);
+          $('#order_billing_balance').val(d + reverse );
+          var e = Number($("#order_billing_amount").val());
+          $("#order_billing_with_gst").val(d + reverse);
+      } else {
+          $('#order_billing_amount').val(c);
+          $('#order_gst_billing_total_value').val(reverse);
+             a = Number($("#order_billing_balance").val());
+            b = a/1.06
+          $('#order_billing_balance').val(b);
+          $("order_billing_with_gst").val(b);
       }
-    });
-  },
-});
-
-  $( "#order_drop_point_address_3" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_3").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_drop_point_address_4" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_drop_point_address_4").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-  $( "#order_shipper_address" ).autocomplete({
-   source: function( request, response ) {
-    var add = $("#order_shipper_address").val();
-    $.ajax({
-      url: "/autocomplete_address",
-      dataType: "json",
-      data: { address: add },
-      
-      success: function( data ) {
-        response( data );
-      }
-    });
-  },
-});
-
-
+  });
 });
 </script>
 
 <script>
-  $(function() {
-    //var projects = $("#order_name").data("autocomplete-source");
-var projects = $("#order_name").data("autocomplete-source");
-
-    function lightwell(request, response) {
-        function hasMatch(s) {
-            return s.toLowerCase().indexOf(request.term.toLowerCase())!==-1;
-        }
-        var i, l, obj, matches = [];
-
-        if (request.term==="") {
-        response([]);
-            return;
-        }
-        for  (i = 0, l = projects.length; i<l; i++) {
-            obj = projects[i];
-            if (hasMatch(obj.name) || hasMatch(obj.desc)) {
-                matches.push(obj);
-            }
-        }
-        response(matches);
+    function roundNumber(number,decimals) {
+  var newString;// The new rounded number
+  decimals = Number(decimals);
+  if (decimals < 1) {
+    newString = (Math.round(number)).toString();
+  } else {
+    var numString = number.toString();
+    if (numString.lastIndexOf(".") == -1) {// If there is no decimal point
+      numString += ".";// give it one at the end
     }
-    
-    $( "#order_name" ).autocomplete({
-      
-        minLength: 0,
-        source: lightwell,
-        focus: function( event, ui ) {
-            $( "#project" ).val( ui.item.name );
-            return false;
-        },
-        select: function( event, ui ) {
-            $( "#order_name" ).val( ui.item.name );
-            $( "#project-id" ).html( ui.item.value ); // is this needed?
-            $( "#project-title" ).html( ui.item.name );
-            $( "#project-description" ).html( ui.item.desc );
-            $( "#project-other" ).html( ui.item.other );
-            
-            return false;
-        }
-    })
-    
-    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-        return $( "<li>" )
-            .append( "<a>" + item.name + 
-                "<br><span style='font-size: 80%;'>Order no.: " + item.value + "</span>" +
-                "<br><span style='font-size: 70%;'>Route: " + item.desc + "</span>" +
-                "<br><span style='font-size: 60%;'>Comment: " + item.other + "</span></a>" )
-            .appendTo( ul );
-    };
-});
+    var cutoff = numString.lastIndexOf(".") + decimals;// The point at which to truncate the number
+    var d1 = Number(numString.substring(cutoff,cutoff+1));// The value of the last decimal place that we'll end up with
+    var d2 = Number(numString.substring(cutoff+1,cutoff+2));// The next decimal, after the last one we want
+    if (d2 >= 5) {// Do we need to round up at all? If not, the string will just be truncated
+      d1 += 1;
+    } 
+    if (d1 == 10) {
+      numString = numString.substring(0, numString.lastIndexOf("."));
+      var roundedNum = Number(numString) + 1;
+      newString = roundedNum.toString() + '.';
+    } else {
+      newString = numString.substring(0,cutoff) + d1.toString();
+    }
+  }
+  if (newString.lastIndexOf(".") == -1) {// Do this again, to the new string
+    newString += ".";
+  }
+  var decs = (newString.substring(newString.lastIndexOf(".")+1)).length;
+  for(var i=0;i<decimals-decs;i++) newString += "0";
+  //var newNumber = Number(newString);// make it a number if you like
+  return newString; // Output the result to the form field (change for your purposes)
+}
+
+
+
 </script>
 
-<script>
-  $(function() {
-    var count = 1;
-    function setColor(btn, color) {
-        var property = document.getElementById(btn);
-        if (count == 0) {
-            property.style.backgroundColor = "#FFFFFF"
-            count = 1;        
-        }
-        else {
-            property.style.backgroundColor = "#7FFF00"
-            count = 0;
-        }
-    }
-    });
-</script>
 
 <style type="text/css">
 #project-description {

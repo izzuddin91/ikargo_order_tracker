@@ -37,6 +37,49 @@
         <dd><%= f.text_field :drop_point_date, class: "date_of_birth" %></dd>
         <br>
 
+<div class= "accordion">
+  <h3>Pick Up Address 1</h3>
+<div>
+          <dt><%= f.label(:pick_up_address_1, "Address") %></dt>
+          <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;" %></dd>
+          <br>
+          <dt><%= f.label(:pick_up_pic_no_1, "Name & Phone no") %></dt>
+          <dd><%= f.text_field :pick_up_pic_no_1, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
+          <br>
+</div>
+<h3>Pick Up Address 2</h3>
+<div>
+          <dt><%= f.label(:pick_up_address_2, "Address") %></dt>
+          <dd><%= f.text_area :pick_up_address_2, class: 'form-control' %></dd>
+          <br>
+          <dt><%= f.label(:pick_up_pic_no_2, "Name & Phone no") %></dt>
+          <dd><%= f.text_field :pick_up_pic_no_2, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
+          <br>
+</div>
+<h3>Pick Up Address 3</h3>
+<div>
+
+         <dt><%= f.label(:pick_up_address_3, "Address") %></dt>
+          <dd><%= f.text_area :pick_up_address_3, class: 'form-control' %></dd>
+          <br>
+          <dt><%= f.label(:pick_up_pic_no_3,  "Name & Phone no") %></dt>
+          <dd><%= f.text_field :pick_up_pic_no_3, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
+          <br>
+</div>
+<h3>Pick Up Address 4</h3>
+<div>
+         <dt><%= f.label(:pick_up_address_4, "Address") %></dt>
+          <dd><%= f.text_area :pick_up_address_4, class: 'form-control' %></dd>
+          <br>
+          <dt><%= f.label(:pick_up_pic_no_4, "Name & Phone") %></dt>
+          <dd><%= f.text_field :pick_up_pic_no_4, class: 'form-control', style: "border-bottom-color:black; border-bottom-width:2px;" %></dd>
+          <br>
+</div>
+</div>
+<br>
+<br>
+
+
 <div class= "accordion" >
 <h3>Drop Point Address 1</h3>
 <div>
