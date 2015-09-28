@@ -201,7 +201,7 @@ end
 def payment_overdue
   @payment_overdue = []
 Order.all.each do |x|
-if !(x.created_at..x.created_at+604800).cover?(Time.now) 
+if !(x.created_at..x.created_at+604800).cover?(Time.now) && !(x.payment_balance == 0)
 @payment_overdue << x
 end
 end
