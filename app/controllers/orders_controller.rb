@@ -198,6 +198,16 @@ def calendar
   
 end
 
+def payment_overdue
+  @payment_overdue = []
+Order.all.each do |x|
+if !(x.created_at..x.created_at+604800).cover?(Time.now) 
+@payment_overdue << x
+end
+end
+
+end
+
 private
 
 def order_params

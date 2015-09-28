@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+  <title>Dashboard Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+      <script>
+      $(function(){
+        $(".popping").click( function() {
+          var order = $(this).data("order-id");
+          $.ajax({
+            url: "/show_details",
+            dataType: "json",
+            data: {response: order},
+            success: function(data) {
+              $('.inquiry_date').html(data[0]);
+              $('.no').html(data[1]);
+              $('.shipper').html(data[2]);
+              $('.shipper_address').html(data[3]);
+              $('.transporter').html(data[4]);
+              $('.truck_size').html(data[5]);
+              $('.details').html(data[6]);
+              $('.route').html(data[7]);
+              $('.remarks').html(data[8]);
+              $('.datetime').html(data[9]);
+              $('.goods_description').html(data[10]);
+              $('.pick_up_address_1').html(data[11]);
+              $('.pick_up_pic_no_1').html(data[12]);
+              $('.pick_up_address_2').html(data[13]);
+              $('.pick_up_pic_no_2').html(data[14]);
+              $('.pick_up_address_3').html(data[15]);
+              $('.pick_up_pic_no_3').html(data[16]);
+              $('.pick_up_address_4').html(data[17]);
+              $('.pick_up_pic_no_4').html(data[18]);
+              $('.special_request').html(data[19]);
+              $('.drop_point_address_1').html(data[20]);
+              $('.drop_point_pic_no_1').html(data[21]);
+              $('.drop_point_address_2').html(data[22]);
+              $('.drop_point_pic_no_2').html(data[23]);
+              $('.drop_point_address_3').html(data[24]);
+              $('.drop_point_pic_no_3').html(data[25]);
+              $('.drop_point_address_4').html(data[26]);
+              $('.drop_point_pic_no_4').html(data[27]);
+              $('.trucks_capacity').html(data[28]);
+              $('.truck_reg_no').html(data[29]);
+              $('.name').html(data[30]);
+              $('.ic').html(data[31]);
+              $('.phone_no').html(data[32]);
+              $('.delivery_date').html(data[33]);
+              $('.do_delivery_date').html(data[34]);
+              $('.do_collection_date').html(data[35]);
+              $('.do_number').html(data[36]);
+              $('.total_tonne').html(data[37]);
+              $('.payment_name').html(data[38]);
+              $('.tel_no').html(data[39]);
+              $('.account_no').html(data[40]);
+              $('.rate').html(data[41]);
+              $('.payment_rate').html(data[42]);
+              $('.gst_total_value').html(data[43]);
+              $('.payment_with_gst').html(data(44));
+              $('.payment_advance').html(data[45]);
+              $('.payment_paid').html(data[46]);
+              $('.payment_commision').html(data[47]);
+              $('.payment_balance').html(data[48]);
+              $('.billing_name').html(data[49]);
+              $('.billing_rate').html(data[50]);
+              $('.billing_amount').html(data[51]);
+              $('gst_billing_total_value').html(data[52]);
+              $('.billing_with_gst').html(data[53]);
+              $('.billing_received').html(data[54]);
+              $('.billing_balance').html(data[55]);
+              $('.invoice_date').html(data[56]);
+              $('.invoice').html(data[57]);
+            },
+          });
+        } );
+      });
+      </script>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Payment Overdue</h1>
+        <h2 class="sub-header">This order has exceed 7 days without payment</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Order no.</th>
+                <th>Shipper</th>
+                <th>Transporter</th>
+                <th>Pick Up Date</th>
+                <th>Rate</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% @payment_overdue.each do |x| %>
+                <td><%= x.no%></td>
+                <td><%= x.shipper%></td>
+                <td><%= x.transporter%></td>
+                <td><%= x.datetime%></td>
+                <td><%= x.payment_rate%></td>
+                <td class="popping" data-order-id=<%= x.id %> data-toggle="modal" data-target="#order-modal-<%= x.id %>" style="color:blue;" id="#order-modal-<%= x.id %>">+</td>
+                <td></td>
+              </tr>
+              <%end%>
+              <br>
+               
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <style>
+  .divOutside {
+    border-bottom:2px blue solid;
+    width:200px;
+    padding-bottom:5px;
+    padding-top:5px;
+  }
+  </style>
+  <!-- Modal -->
+  <!-- Button trigger modal -->
+
+  <% @payment_overdue.each do |x| %>  
+  <div class="modal fade" id="order-modal-<%= x.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style=" max-height:700px;
+      overflow:auto;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel" style= "text-align:center;">Basic info <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></h3>
+      </div>
+      <div class="row" style="margin-left:5px;">
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;"><li>inquiry date <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></li></h4><div class="inquiry_date" style="text-decoration:underline;"></div></div>
+          <div><h4 style="margin-left:10px;"><li>no</li></h4><div class="no"style="text-decoration:underline;"></div></div>
+          <div><h4 style="margin-left:10px;"><li>shipper <span class="glyphicon glyphicon-user" aria-hidden="true"></li></h4><div class="shipper"style="text-decoration:underline;"></div></div>
+          <div><h4 style="margin-left:10px;"><li>shipper_address</li></h4><div class="shipper_address"style="text-decoration:underline;"></div></div>
+          <div><h4 style="margin-left:10px;"><li>transporter</li></h4><div class="transporter"style="text-decoration:underline;"></div></div>
+        </div>
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;"><li>truck_size</li></h4><div class="truck_size"style="text-decoration:underline;"></div></div>
+          <div><h4 style="margin-left:10px;"><li>details</li></h4><div class="details"></div></div>
+          <div><h4 style="margin-left:10px;"><li>remarks</li></h4><div class="remarks"></div></div>          
+          <div><h4 style="margin-left:10px;"><li>notes</li></h4><div class="notes"></div></div>
+          <div><h4 style="margin-left:10px;"><li>goods_description</li></h4><div class="goods_description"></div></div>
+        </div>
+      </div>
+      <hr>
+      <h3 style="text-align:center;">Address <span class="glyphicon glyphicon-send" aria-hidden="true"></h3>
+      <hr>
+      <div class="row" style="margin-left:5px;"> 
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;"><li>pick up address 1</li></h4><div class="pick_up_address_1"></div></div>
+          <div><h4 style="margin-left:10px;"><li>pick up address 2</li></h4><div class="pick_up_address_2"></div></div>
+          <div><h4 style="margin-left:10px;"><li>pick up address 3</li></h4><div class="pick_up_address_3"></div></div>
+          <div><h4 style="margin-left:10px;"><li>pick up address 4</li></h4><div class="pick_up_address_4"></div></div>
+          <div><h4 style="margin-left:10px;"><li>drop point address 1</li></h4><div class="drop_point_address_1"></div></div>
+          <div><h4 style="margin-left:10px;"><li>drop point address 2</li></h4><div class="drop_point_address_2"></div></div>
+          <div><h4 style="margin-left:10px;"><li>drop point address 3</li></h4><div class="drop_point_address_3"></div></div>
+          <div><h4 style="margin-left:10px;"><li>drop point address 4</li></h4><div class="drop_point_address_4"></div></div>
+          <div><h4 style="margin-left:10px;"><li>special request</li></h4><div class="special_request"></div></div>
+          <div><h4 style="margin-left:10px;"><li>trucks capacity</li></h4><div class="trucks_capacity"></div></div>
+        </div>
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;"><li>pick up pic no 1</li></h4><div class="pick_up_pic_no_1"></div></div>
+          <div><h4 style="margin-left:10px;"><li>pick up pic no 2</li></h4><div class="pick_up_pic_no_2"></div></div>
+          <div><h4 style="margin-left:10px;"><li>pick up pic no 3</li></h4><div class="pick_up_pic_no_3"></div></div>
+          <div><h4 style="margin-left:10px;"><li>pick up pic no 4</li></h4><div class="pick_up_pic_no_4"></div></div>     
+          <div><h4 style="margin-left:10px;"><li>drop point pic no 1</li></h4><div class="drop_point_pic_no_1"></div></div>   
+          <div><h4 style="margin-left:10px;"><li>drop point pic no 2</li></h4><div class="drop_point_pic_no_2"></div></div>     
+          <div><h4 style="margin-left:10px;"><li>drop point pic no 3</li></h4><div class="drop_point_pic_no_3"></div></div>     
+          <div><h4 style="margin-left:10px;"><li>drop point pic no 4</li></h4><div class="drop_point_pic_no_4"></div></div>
+        </div>
+      </div>
+      <hr>
+      <h3 style="text-align:center;">Driver <span class="glyphicon glyphicon-user" aria-hidden="true"></h3>
+      <hr>
+      <div class= "row">
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;">truck_reg_no</h4><div class="truck_reg_no"></div></div>
+          <div><h4 style="margin-left:10px;">name</h4><div class="name"></div></div>
+        </div>
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;">ic</h4><div class="ic"></div></div>
+          <div><h4 style="margin-left:10px;">phone_no</h4><div class="phone_no"></div></div>
+        </div>
+      </div>
+      <hr>
+      <h3 style="text-align:center;">Flow <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></h3>
+      <hr>
+      <div class= "row">
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;">delivery date</h4><div class="delivery_date"></div></div>
+          <div><h4 style="margin-left:10px;">do request date</h4><div class="do_request_date"></div></div>
+          <div><h4 style="margin-left:10px;">do collection date</h4><div class="do_collection_date"></div></div>
+        </div>
+        <div class="col-md-6">
+          <div><h4 style="margin-left:10px;">do number</h4><div class="do_number"></div></div>
+          <div><h4 style="margin-left:10px;">total tonne</h4><div class="total_tonne"></div></div>
+        </div>
+      </div>
+      <hr>
+      <h3 style="text-align:center;">Payment <span class="glyphicon glyphicon-barcode" aria-hidden="true"></h3>
+      <hr>
+      <div class="row">
+       <div class="col-md-6">
+        <div><h4 style="margin-left:10px;">payment name</h4><div class="payment_name"></div></div>
+        <div><h4 style="margin-left:10px;">tel no</h4><div class="tel_no"></div></div>
+        <div><h4 style="margin-left:10px;">account no</h4><div class="account_no"></div></div>
+        <div><h4 style="margin-left:10px;">rate</h4><div class="rate"></div></div>
+        <div><h4 style="margin-left:10px;">payment rate</h4><div class="payment_rate"></div></div>
+        <div><h4 style="margin-left:10px;">gst total value</h4><div class="gst_total_value"></div></div>
+        <div><h4 style="margin-left:10px;">payment with gst</h4><div class="payment_with_gst"></div></div>
+      </div>
+      <div class="col-md-6">
+        <div><h4 style="margin-left:10px;">payment advance</h4><div class="payment_advance"></div></div>
+        <div><h4 style="margin-left:10px;">payment paid</h4><div class="payment_paid"></div></div>
+        <div><h4 style="margin-left:10px;">payment commision</h4><div class="payment_commision"></div></div>
+        <div><h4 style="margin-left:10px;">payment balance</h4><div class="payment_balance"></div></div>
+      </div>
+    </div>
+    <hr>
+    <h3 style="text-align:center;">Billing <span class="glyphicon glyphicon-yen" aria-hidden="true"></h3>
+    <hr>
+    <div class="row">
+     <div class="col-md-6">
+      <div><h4 style="margin-left:10px;">billing name</h4><div class="billing_name"></div></div>
+      <div><h4 style="margin-left:10px;">billing rate</h4><div class="billing_rate"></div></div>
+      <div><h4 style="margin-left:10px;">billing amount</h4><div class="billing_amount"></div></div>
+      <div><h4 style="margin-left:10px;">gst billing total value</h4><div class="gst_billing_total_value"></div></div>
+    </div>
+    <div class="col-md-6">
+      <div><h4 style="margin-left:10px;">billing with gst</h4><div class="billing_with_gst"></div></div>
+      <div><h4 style="margin-left:10px;">billing received</h4><div class="billing_received"></div></div>
+      <div><h4 style="margin-left:10px;">billing balance</h4><div class="billing_balance"></div></div>
+      <div><h4 style="margin-left:10px;">invoice date</h4><div class="invoice_date"></div></div>
+      <div><h4 style="margin-left:10px;">invoice</h4><div class="invoice"></div></div>
+    </div> 
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-default"><a href="/orders/<%= x.id%>/edit" data-no-turbolink = true>Edit</a></button>
+</div>
+</div>
+</div>
+</div>
+<% end %>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+  </html>

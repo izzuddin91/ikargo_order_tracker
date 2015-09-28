@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   get "calendar" => "orders#calendar"
 
+  get "payment_overdue" => "orders#payment_overdue"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
