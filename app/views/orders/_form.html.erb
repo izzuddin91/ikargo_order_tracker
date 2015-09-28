@@ -33,13 +33,21 @@
     <dd><%= f.text_area :notes, class: 'form-control' %></dd>
     <br>
 <h3>ADDRESS</h3>
-  <dt><%= f.label :drop_point_date %></dt>
-        <dd><%= f.text_field :drop_point_date, class: "date_of_birth" %></dd>
+
         <br>
 
+
+  <dt><%= f.label :goods_description %></dt>
+          <dd><%= f.text_field :goods_description, class: 'form-control' %></dd>
+          <br>
+          <dt><%= f.label(:datetime, "Pick up date")%></dt>
+          <dd><%= f.text_field :datetime, class: "date_of_birth" %></dd><br>
 <div class= "accordion">
+
   <h3>Pick Up Address 1</h3>
 <div>
+
+        
           <dt><%= f.label(:pick_up_address_1, "Address") %></dt>
           <dd><%= f.text_area :pick_up_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;" %></dd>
           <br>
@@ -80,10 +88,13 @@
 <br>
 
 
+<dt><%= f.label :drop_point_date %></dt>
+        <dd><%= f.text_field :drop_point_date, class: "date_of_birth" %></dd><br>
+
 <div class= "accordion" >
 <h3>Drop Point Address 1</h3>
 <div>
-
+  
 
         <dt><%= f.label(:drop_point_address_1, "Address") %></dt>
         <dd><%= f.text_area :drop_point_address_1, class: 'form-control', style: "border-top-color:black; border-top-width:2px;"  %></dd>
