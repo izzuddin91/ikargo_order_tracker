@@ -9,10 +9,16 @@
 <%= date.day %>
 
 <%if @orders_by_date[date] %>
+
 <ul>
-  <% @orders_by_date[date].each do |order|%>
-  <li><%= order.transporter%>(<%= link_to order.remarks, order %>)</li>
-<%end%>
+  <% @orders_by_date[date].first(4).each do |order|%>
+
+  <li><%= order.transporter%>(<%= link_to order.remarks, order %>)</li><%end%>
+
+  <% if @orders_by_date[date].count > 4 %>
+    <li><a href="statistic/<%= date %>">See More</a></li>
+    <%end%>
+
 </ul>
 
 <%end%>

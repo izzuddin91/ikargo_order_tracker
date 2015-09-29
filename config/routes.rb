@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get "export" => 'orders#export'
 
-  get "statistic" => 'orders#statistic'
+  get '/statistic/:id' => 'orders#statistic'
 
   get "/show_details" => 'orders#show_details'
 

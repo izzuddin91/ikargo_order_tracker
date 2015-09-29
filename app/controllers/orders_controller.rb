@@ -35,7 +35,6 @@ order.each do |x|
   @target & @target
 end
 
-
 number = params[:address].length - 1
 @back = []
 @target.each do |x|
@@ -58,7 +57,6 @@ end
 
 
 def create
-	
 	a = current_user.email
 	@order = Order.create(order_params)
 	@order.update(user_email: a)
@@ -67,7 +65,6 @@ def create
     	#UserMailer.create_edit_order(@order, file).deliver
 	redirect_to root_path(@order)
 end
-
 
 def edit
   @address = Order.pluck(:pick_up_address_1, 
@@ -123,7 +120,17 @@ end
 
 
 def statistic
-  @order = Order.all
+  @order = []
+  a = params[:id]
+  @today = params[:id]
+  time = Time.parse(a)
+  compare = time.strftime("%Y-%m-%d")
+  Order.all.each do |x|
+    if x.created_at.strftime("%Y-%m-%d") == compare
+      @order << x
+    end
+  end
+   @order 
 end
 
 
@@ -200,18 +207,18 @@ end
 
 def payment_overdue
   @payment_overdue = []
-Order.all.each do |x|
-if !(x.created_at..x.created_at+604800).cover?(Time.now) && !(x.payment_balance == 0)
-@payment_overdue << x
-end
+  Order.all.each do |x|
+    if !(x.created_at..x.created_at+604800).cover?(Time.now) && !(x.payment_balance == 0)
+      @payment_overdue << x
+    end
+  end
 end
 
-end
 
 private
 
-def order_params
 
+def order_params
 	params.require(:order).permit(:inquiry_date, :no, :shipper, :shipper_address, :transporter, :truck_size, :payment_rate,
 		:payment_advance, :payment_paid, :payment_commision, :payment_balance, :remarks, :pick_up_address_1, :pick_up_pic_no_1, 
 		:pick_up_address_2, :pick_up_pic_no_2, :pick_up_address_3, :pick_up_pic_no_3, :pick_up_address_4, :pick_up_pic_no_4,
