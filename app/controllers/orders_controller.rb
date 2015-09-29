@@ -123,6 +123,7 @@ def statistic
   @order = []
   a = params[:id]
   @today = params[:id]
+  byebug
   time = Time.parse(a)
   compare = time.strftime("%Y-%m-%d")
   Order.all.each do |x|
