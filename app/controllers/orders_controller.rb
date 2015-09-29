@@ -127,7 +127,7 @@ def statistic
   time = Time.parse(a)
   compare = time.strftime("%Y-%m-%d")
   Order.all.each do |x|
-    if x.datetime.strftime("%Y-%m-%d") == compare
+    if !x.datetime.nil? && (x.datetime.strftime("%Y-%m-%d") == compare)
       @order << x
     end
   end
