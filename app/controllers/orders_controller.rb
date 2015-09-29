@@ -126,7 +126,7 @@ def statistic
   time = Time.parse(a)
   compare = time.strftime("%Y-%m-%d")
   Order.all.each do |x|
-    if x.created_at.strftime("%Y-%m-%d") == compare
+    if x.datetime.strftime("%Y-%m-%d") == compare
       @order << x
     end
   end
