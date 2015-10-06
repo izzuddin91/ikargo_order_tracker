@@ -1,3 +1,149 @@
+<script>
+$(function() {
+  $( "#order_pick_up_address_1" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_1").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_2" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_2").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_3" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_3").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_pick_up_address_4" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_pick_up_address_4").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+
+  $( "#order_drop_point_address_1" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_1").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_2" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_2").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_3" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_3").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_drop_point_address_4" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_drop_point_address_4").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+  $( "#order_shipper_address" ).autocomplete({
+   source: function( request, response ) {
+    var add = $("#order_shipper_address").val();
+    $.ajax({
+      url: "/autocomplete_address",
+      dataType: "json",
+      data: { address: add },
+      
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+});
+
+
+});
+</script>
+
+
+
+
+
  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <div class="col-md-6">
     <%= form_for @order  do |f| %>

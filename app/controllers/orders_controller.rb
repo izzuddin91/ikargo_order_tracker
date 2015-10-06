@@ -35,6 +35,7 @@ order.each do |x|
   @target & @target
 end
 
+#
 number = params[:address].length - 1
 @back = []
 @target.each do |x|
