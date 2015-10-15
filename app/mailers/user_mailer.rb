@@ -6,89 +6,10 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.create_edit_order.subject
   #
-  def create_edit_order(order, file)
-   @order = order
-   CSV.open(file, 'rb+', 
-    :write_headers => true,
-    :headers => [
-      "Inquiry Date",
-      "No", 
-      "Shipper",
-      "Details",
-      "DateTime",
-      "Trucks Size / Type" ,
-      "Goods Description",
-      "Address",
-      " PIC Tel",
-      "Special Request" ,
-      "Trucks Capacity /Type" ,
-      "Truck Reg. No." ,
-      "Name / IC" ,
-      "Tel",
-      "Date / Time",
-      "Address",
-      "PIC Tel" ,
-      "Special Request",
-      "Delivery Status/Date" ,
-      "D.O. Request/Date",
-      "D.O. Collection/Date",
-      "D.O.No." ,
-      "Total Tonne",
-      "Name" ,
-      "Tel",
-      "Bank A/C ",
-      "Rate" ,
-      "Advance" ,
-      "Paid",
-      "Balance" ,
-      "Name",
-      "Amount" ,
-      "Invoice Date" ,
-      "Invoice",
-    ]
-      ) do |csv|
-  csv << [
-@order.inquiry_date,
-@order.no,
-@order.shipper,
-@order.remarks,
-@order.datetime,
-@order.truck_size,
-@order.goods_description,
-@order.pick_up_address_1 ,
-@order.pick_up_pic_no_1,
-@order.notes,
-@order.trucks_capacity,
-@order.truck_reg_no,
-("#{@order.name}"+"\n"+" #{@order.ic}"),
-@order.phone_no,
-@order.drop_point_date,
-@order.drop_point_address_1,
-@order.drop_point_pic_no_1,
-@order.special_request,
-@order.delivery_date,
-@order.do_request_date,
-@order.do_collection_date,
-@order.do_number,
-@order.total_tonne,
-@order.payment_name,
-@order.tel_no,
-@order.account_no,
-@order.payment_with_gst,
-@order.payment_advance,
-@order.payment_paid,
-@order.payment_balance,
-@order.billing_name,
-@order.billing_amount,
-@order.invoice_date,
-@order.invoice
-  ]
-    end
-    file.rewind
-    a = file.path
-    attachments['report.csv'] = File.read(a)
+  def create_edit_order(order, a)
+     @order = order
     # if @order.user_email == "izzuddin@ikargo.com"
-      mail(to: ["izzuddin@ikargo.com", "aru@ikargo.com", "mu@ikargo.com", "richard@ikargo.com"],
+      mail(to: [a.to_s],
     #     bcc: "mu@ikargo.com",
         # cc: "aru@ikargo.com",
         subject:  "New order has been created",
@@ -112,7 +33,7 @@ class UserMailer < ApplicationMailer
     #     subject:  "New order has been created",
     #     date: Time.now)
     # end
-    File.delete
+
   end
 
   def edit_order(order)

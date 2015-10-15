@@ -8,18 +8,18 @@
   <%= csrf_meta_tags %>
   <link href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/jqueryui/dataTables.jqueryui.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/plug-ins/1.10.7/integration/jqueryui/dataTables.jqueryui.js"></script>
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
@@ -27,67 +27,44 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-
-            <% if user_signed_in? %>
-            <li style="color:white; padding-top:15px;color:#9d9d9d;" class= "icon-bar">Signed in as <%= current_user.email %>. Not you?</li>
-            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-             <% else %>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-            <li><%= link_to "Sign in", new_user_session_path %></li>
-               <%end%>
-         <li>      <%= link_to 'Create new order', orders_path, data:  { no_turbolink: true }%></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">iKargo</a>
       </div>
-    </nav>
-  </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
 
- <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="/">Overview <span class="sr-only">(current)</span></a></li>
-            <li>  <%= link_to 'Create new order', orders_path, data:  { no_turbolink: true } %></li>
-
-            <li><%= link_to "Calendar" , calendar_path %></li>
-            <li><%= link_to "Payment Overdue" , payment_overdue_path %></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
-        </div>
-  <% flash.each do |name, msg|%>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<%end%>
-<%= yield %>
- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<%= debug(params) if Rails.env.development? %></p>
+          <% if user_signed_in? %>
+          <li style="color:white; padding-top:15px;color:#9d9d9d;" class= "icon-bar">Signed in as <%= current_user.email %> as <%= current_user.party%></li>
+          <li>      <%= link_to 'Create new order', orders_path, data:  { no_turbolink: true }%></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+          <%end%>
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
 </div>
-</body>
-</html>
+
+
+    <% flash.each do |name, msg|%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <%end%>
+    <%= yield %>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <%= debug(params) if Rails.env.development? %></p>
+    </div>
+  </body>
+  </html>

@@ -1,8 +1,6 @@
 
-<p id="center"><img src="http://academy.mymagic.my/msa2014/wp-content/uploads/2014/09/ikargo.jpg" style="margin-left:400px;">
-</p>
-<div class="master" style="margin-left:600px;">
 
+<div class="container" style="text-align:center;">
 <h2>Sign up</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -25,6 +23,20 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+
+   <div class="field">
+    <%= f.label :Sign_in_as %> <br>
+    <dd>
+      <select name="user[party]" id="party" >
+        <option value="iKargo" selected= "selected">iKargo Staff</option>
+        <option value="Shipper">Shipper</option>
+        <option value="Transporter">Transporter</option>
+      </select>
+    </dd>
+    
+  </div>
+  <br>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
@@ -32,3 +44,4 @@
 
 <%= render "devise/shared/links" %>
 </div>
+

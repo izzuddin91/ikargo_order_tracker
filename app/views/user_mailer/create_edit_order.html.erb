@@ -7,12 +7,12 @@
 <body>
   <h1> A new order has been created: <br> </h1>
   <ul>
-    <li> By: <%= @order.user_email %></li><br>
     <li> Order no: <%= @order.no %></li><br>
-    <li> Shipper: <%= @order.shipper %></li><br>
-    <li> Transporter: <%= @order.transporter %></li><br>
-    <li> Route: <%= @order.remarks %></li><br>
-    <li style= "color:red;"> Rate: <%= @order.payment_rate %></li>
+    <li> Pod: <%= @order.pod %></li><br>
+    <li> Loading Status: <%= @order.loading_status %></li><br>
+    <li> Container Request: <%= @order.pick_up%></li><br>
+    <li> Container Received: <%= @order.drop %></li><br>
+    <li> Remarks: <%= @order.remarks %></li><br>
     <li>link: https://secure-crag-4260.herokuapp.com/orders/<%= @order.id %></li>
   </ul>
 </body>
