@@ -35,7 +35,7 @@ end
   end
 
 	def dashboard
-		@order = Order.paginate(:page => params[:page], :per_page => 20).order('no DESC')
+		@order = Order.paginate(:page => params[:page], :per_page => 20).order('no ASC')
 		respond_to do |format|
 			format.html
 			format.csv { send_data @order.to_csv }
