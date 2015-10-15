@@ -36,11 +36,10 @@ class UserMailer < ApplicationMailer
 
   end
 
-  def edit_order(order)
+  def edit_order(order, a)
    @order = order
-   mail(to: ["izzuddin@ikargo.com", "aru@ikargo.com", "mu@ikargo.com", "richard@ikargo.com"],
-    subject:  "Changes on shipments details",
-    date: Time.now)
+   mail(to: [a.to_s],
+      date: Time.now)
 
     #  if @order.user_email == "izzuddin@ikargo.com"
     #   mail(to: "richard@ikargo.com",

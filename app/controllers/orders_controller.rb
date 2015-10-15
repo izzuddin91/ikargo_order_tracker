@@ -44,9 +44,9 @@ end
 end
 
 def create
-	a = current_user.email
+	# a = current_user.email
 	@order = Order.create(order_params)
-  UserMailer.create_edit_order(@order, a).deliver
+  # UserMailer.create_edit_order(@order, a).deliver
 	redirect_to root_path(@order)
 end
 
@@ -60,10 +60,10 @@ end
 
 def update
 	@order = Order.find(params[:id])
-	# a = current_user.email
+	a = current_user.email
 	@order.update(order_params)
-#UserMailer.edit_order(@order).deliver
-redirect_to root_path(@order)
+  UserMailer.edit_order(@order, a).deliver
+  redirect_to root_path(@order)
       # Handle a successful update.
     end
 
